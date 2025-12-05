@@ -3,13 +3,8 @@ import time
 from typing import Any
 
 from lerobot.utils.errors import DeviceAlreadyConnectedError, DeviceNotConnectedError
-from lerobot.motors import Motor, MotorCalibration, MotorNormMode
-# from lerobot_motor_starai.starai import (
-#     StaraiMotorsBus,
-# )
 from fashionstar_uart_sdk.uart_pocket_handler import (
     PortHandler ,
-    SyncPositionControlOptions,
     Monitor_data
 )
 from lerobot.teleoperators.teleoperator import Teleoperator
@@ -20,13 +15,11 @@ logger = logging.getLogger(__name__)
 
 class Firefly(Teleoperator):
     config_class = FireflyConfig
-    name = "starai_violin"
+    name = "starai_firefly"
 
     def __init__(self, config: FireflyConfig):
         super().__init__(config)
         self.config = config
-        # # self.bus:StaraiMotorsBus = StaraiMotorsBus(
-        # self.port=self.config.port
         self._is_connected = False
         self.porthandler:PortHandler = PortHandler(self.config.port,self.config.baudrate)
         self.motors = {"Joint_1": 0,
@@ -129,7 +122,6 @@ class Firefly(Teleoperator):
         return action
 
     def send_feedback(self, feedback: dict[str, float]) -> None:
-        # TODO(rcadene, aliberts): Implement force feedback
         raise NotImplementedError
 
     def disconnect(self) -> None:
@@ -141,11 +133,5 @@ class Firefly(Teleoperator):
         logger.info(f"{self} disconnected.")
 
     def send_action(self, action: dict[str, Any]) -> dict[str, Any]:
-        raise DeviceNotConnectedError(f"{self} is not connected.")
-        if not self.is_connected:
-            raise DeviceNotConnectedError(f"{self} is not connected.")
-
-        goal_pos = {key.removesuffix(".pos"): val for key, val in action.items() if key.endswith(".pos")}
-        self.bus.sync_write("Goal_Position", goal_pos)
-        return {f"{motor}.pos": val for motor, val in goal_pos.items()}
+        raise NotImplementedError
     
