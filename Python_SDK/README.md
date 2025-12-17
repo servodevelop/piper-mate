@@ -16,7 +16,7 @@
 
 ## 项目结构
 
-```
+```bash
 fashionstar_agilex/
 ├── fashionstar_agilex.py     # 主控制程序
 ├── can_activate.sh           # 单CAN设备激活脚本
@@ -28,19 +28,21 @@ fashionstar_agilex/
 ## 系统要求
 
 ### 硬件要求
+
 - FashionStar机械臂（通过USB连接）
 - Piper机械臂（通过CAN总线连接）
 - CAN转USB适配器
-- Linux系统（推荐Ubuntu 18.04+）
+- Linux系统（推荐Ubuntu 22.04+）
 
 ### 软件依赖
+
 ```bash
 # 安装CAN工具
 sudo apt update
 sudo apt install ethtool can-utils
 
 # Python依赖
-pip install serial fashionstar-uart-sdk piper-sdk
+sudo pip install serial fashionstar-uart-sdk piper-sdk python-can scipy
 ```
 
 ## 快速开始
@@ -48,20 +50,12 @@ pip install serial fashionstar-uart-sdk piper-sdk
 ### 1. 配置CAN设备
 
 #### 单CAN设备配置
-```bash
-sudo bash can_activate.sh can0 1000000
-```
 
-#### 多CAN设备配置
-编辑 `can_muti_activate.sh` 文件中的USB端口映射：
 ```bash
-declare -A USB_PORTS 
-USB_PORTS["3-1.1:1.0"]="can_arm1:1000000"
-USB_PORTS["3-1.2:1.0"]="can_arm2:1000000"
-```
-然后运行：
-```bash
-sudo bash can_muti_activate.sh
+# 1. 查找所有CAN端口
+bash find_all_can_port.sh
+# 2. 激活can0接口（波特率1000000）
+bash can_activate.sh can0 1000000
 ```
 
 ### 2. 运行主程序
@@ -106,6 +100,7 @@ UPDATE_RATE = 60.0
 ### 夹爪控制
 
 夹爪角度转换为米制单位：
+
 - 角度范围：0° ~ 45°
 - 对应距离：0m ~ 0.08m
 
@@ -118,26 +113,34 @@ UPDATE_RATE = 60.0
 ## 脚本说明
 
 ### can_activate.sh
+
 单CAN设备激活脚本，支持：
+
 - 自动检测CAN接口
 - 设置比特率
 - 接口重命名
 - USB硬件地址匹配
 
 ### can_config.sh
+
 通用CAN配置脚本，支持：
+
 - 单CAN和多CAN设备配置
 - 灵活的USB端口映射
 - 比特率自定义
 
 ### can_muti_activate.sh
+
 多CAN设备激活脚本，支持：
+
 - 多设备并行配置
 - 重复名称检测
 - 交互式确认
 
 ### find_all_can_port.sh
+
 CAN端口检测脚本，用于：
+
 - 列出所有CAN接口
 - 显示USB端口信息
 - 系统兼容性检查
@@ -152,8 +155,7 @@ CAN端口检测脚本，用于：
    - 确认USB端口映射正确
 
 2. **权限不足**
-   - 使用 `sudo` 运行脚本
-   - 检查用户是否在 `dialout` 组
+   - 使用 `sudo chmod 777 /dev/ttyUSB*` 后运行脚本
 
 3. **FashionStar连接失败**
    - 检查USB端口号
@@ -163,33 +165,10 @@ CAN端口检测脚本，用于：
 ### 调试信息
 
 程序运行时显示：
+
 - 关节状态实时监控
 - 控制频率统计
 - 错误信息详细输出
-
-## API参考
-
-### FashionStarAgilex类
-
-主要方法：
-
-```python
-# 初始化
-robot = FashionStarAgilex(fashionstar_port, piper_can_name, gripper_exist)
-
-# 读取关节状态
-joint_states = robot.get_fashionstar_joint_states()
-
-# 控制Piper机械臂
-robot.control_piper_joints(joint_states)
-
-# 力矩控制
-robot.enable_torque()
-robot.disable_torque()
-
-# 关闭连接
-robot.close()
-```
 
 ## 安全注意事项
 

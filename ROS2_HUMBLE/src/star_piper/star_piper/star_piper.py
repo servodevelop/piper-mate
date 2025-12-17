@@ -16,7 +16,7 @@ from fashionstar_uart_sdk.uart_pocket_handler import (
     SyncPositionControlOptions,
 )
 
-ROBO_DRIVER_NODE = "robo_driver_node"  # 驱动节点名称 / driver node name
+STAR_PIPER_NODE = "star_piper_node"  # 驱动节点名称 / driver node name
 
 # Piper手臂关节角度限制（角度和弧度）
 JOINT_ANGLE_LIMITS = {
@@ -39,7 +39,7 @@ JOINT_RADIAN_LIMITS = {
 
 class FashionStarDriver(Node):
     def __init__(self):
-        super().__init__(ROBO_DRIVER_NODE)
+        super().__init__(STAR_PIPER_NODE)
         
         # 参数声明
         self.declare_parameter('port', '/dev/ttyUSB0')
@@ -73,8 +73,8 @@ class FashionStarDriver(Node):
             self.get_logger().error(f"机械臂连接失败: {e}")
             raise
         # 清除圈数
-        self.disable_torque()
-        self.port_handler.reset_multi_turn_angle(0xff)
+        for servo_id in self.servo_ids:
+            self.port_handler.write["Stop_On_Control_Mode"](servo_id, "unlocked", 900)
         
         # 创建发布器 - 关节状态
         self.joint_ctrl_pub = self.create_publisher(JointState, 'joint_ctrl_single', 10)

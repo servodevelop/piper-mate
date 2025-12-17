@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 from glob import glob
 
-package_name = "robo_driver"
+package_name = "star_piper"
 
 setup(
     name=package_name,
@@ -23,8 +23,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "driver = robo_driver.robo_driver:main",
-            # "driver4rviz = robo_driver.rviz_driver_demo:main",
+            "driver = star_piper.star_piper:main",
         ],
     },
 )
