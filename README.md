@@ -1,4 +1,9 @@
-# 资料一览
+# firefly项目文档
+
+![Programming Language](https://img.shields.io/badge/language-Python-blue?style=flat-square) ![Framework](https://img.shields.io/badge/framework-Ros%20Noetic-orange?style=flat-square) ![Hardware Compatibility](https://img.shields.io/badge/hardware-piper%2ffirefly-green?style=flat-square) ![OS Support](https://img.shields.io/badge/OS-Ubuntu%2F22.04-purple?style=flat-square)
+
+
+[github链接](https://github.com/Welt-liu/lerobot_teleoperator_firefly)
 
 ## 一、概述
 
@@ -6,7 +11,9 @@
 
 ## 二、前置准备：下载并配置机械臂 SDK
 
-### 2.1环境要求
+请下载本项目的仓库，并进入仓库目录。
+
+### 2.1 环境要求
 
 | 类别       | 要求                                                    |
 | ---------- | ------------------------------------------------------- |
@@ -14,41 +21,30 @@
 | 操作方式   | 1. ROS2 HUMBLE<br/>2. Lerobot<br/>3. Python SDK         |
 | 机械臂驱动 | [CH340](https://www.wch.cn/downloads/CH341SER_EXE.html) |
 
+### 2.2 检验可用性
 
-
-### 2.2下载leader SDK，并检验可用性。
-
-github链接：TODO
-
-
-
-可用性检验demo：
-
+```bash
 TODO
+```
 
-
-
-### 2.3下载follower SDK，并检验可用性
-
-github链接：TODO
-
+### 2.3 下载follower SDK，并检验可用性
 
 
 通过下载piper sdk，你可以得到两个脚本 ``find_all_can_port.sh`` ``can_activate.sh``
 
 运行脚本，完成寻找can port 和 激活can port两个步骤。
 
+```bash
     bash find_all_can_port.sh 
     
     bash can_activate.sh can0 1000000
+```
 
 ### 三、运行code
 
 ### 3.1 Python
 
 TODO
-
-
 
 ### 3.2 Lerobot
 
