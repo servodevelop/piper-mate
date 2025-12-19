@@ -27,59 +27,13 @@
 TODO
 ```
 
-### 2.3 下载follower SDK，并检验可用性
 
+### 三、控制方式
 
-通过下载piper sdk，你可以得到两个脚本 ``find_all_can_port.sh`` ``can_activate.sh``
+任选其一
 
-运行脚本，完成寻找can port 和 激活can port两个步骤。
+[ROS2 HUMBLE](./ROS2_HUMBLE/README.md)
 
-```bash
-    bash find_all_can_port.sh 
-    
-    bash can_activate.sh can0 1000000
-```
+[Lerobot](./Lerobot/README.md)
 
-### 三、运行code
-
-### 3.1 Python
-
-TODO
-
-### 3.2 Lerobot
-
-进入本README.md文档所在目录
-
-```bash
-pip install lerobot                         # 安装lerobot
-#pip install lerobot_robot_piper             # 安装lerobot_robot_piper
-#pip install lerobot_teleoperator_firefly    # 安装lerobot_teleoperator_firefly
-cd ./lerobot/lerobot_teleoperator_firefly
-pip install ./
-
-cd ./ TODO
-```
-
-
-
-
-
-运行demo
-
-```bash
-lerobot-teleoperate \
-    --robot.type=lerobot_robot_piper \
-    --robot.can_name=can0 \
-    --robot.id=lerobot_robot_piper \
-    --teleop.type=lerobot_teleoperator_firefly \
-    --teleop.port=/dev/ttyUSB0 \
-    --teleop.id=lerobot_teleoperator_firefly \
-    --teleop.baudrate=1000000
-```
-
-
-
-### 3.3 ROS2
-
-
-
+[Python SDK](./Python_SDK/README.md)
