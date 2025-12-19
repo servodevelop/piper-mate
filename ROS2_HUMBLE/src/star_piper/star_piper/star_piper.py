@@ -75,6 +75,7 @@ class FashionStarDriver(Node):
         # 清除圈数
         for servo_id in self.servo_ids:
             self.port_handler.write["Stop_On_Control_Mode"](servo_id, "unlocked", 900)
+        self.port_handler.reset_multi_turn_angle(0xff)
         
         # 创建发布器 - 关节状态
         self.joint_ctrl_pub = self.create_publisher(JointState, 'joint_ctrl_single', 10)
