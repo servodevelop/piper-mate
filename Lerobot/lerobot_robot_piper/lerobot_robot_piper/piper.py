@@ -30,19 +30,19 @@ class Piper(Robot):
 
         self.cameras = make_cameras_from_configs(config.cameras)
 
-        self.motors_type = {"Joint_1": int,
-                        "Joint_2": int,
-                        "Joint_3": int,
-                        "Joint_4": int,
-                        "Joint_5": int,
-                        "Joint_6": int,
-                        "Gripper": int}
+        self.motors_pos_type = {"Joint_1.pos": int,
+                        "Joint_2.pos": int,
+                        "Joint_3.pos": int,
+                        "Joint_4.pos": int,
+                        "Joint_5.pos": int,
+                        "Joint_6.pos": int,
+                        "Gripper.pos": int}
 
         
 
     @property
     def _motors_ft(self) -> dict[str, type]:
-        return self.motors_type
+        return self.motors_pos_type
 
     @property
     def _cameras_ft(self) -> dict[str, tuple]:
