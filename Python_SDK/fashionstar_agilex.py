@@ -76,6 +76,7 @@ class FashionStarAgilex:
         # 清除圈数
         for servo_id in self.servo_ids:
             self.fashionstar_handler.write["Stop_On_Control_Mode"](servo_id, "unlocked", 900)
+        self.fashionstar_handler.reset_multi_turn_angle(0xff)
 
         # 关节名称
         self.joint_names = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'joint6']
@@ -290,7 +291,7 @@ def main():
     FASHIONSTAR_PORT = "/dev/ttyUSB0"    # FashionStar USB端口
     PIPER_CAN_NAME = "can0"              # Piper CAN端口
     GRIPPER_EXIST = True                 # 是否包含夹爪
-    UPDATE_RATE = 60.0                   # 控制频率（Hz）- 可调节
+    UPDATE_RATE = 100.0                   # 控制频率（Hz）- 可调节
 
     try:
         # 创建机械臂控制器
