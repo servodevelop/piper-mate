@@ -219,16 +219,6 @@ lerobot-find-port
 | motor_5 |          -180° |           180° | 没有限位，需转动到角度上下限参考值 |
 | motor_6 |             0° |           100° | 转动到限位处                       |
 
-### leader
-
-> [!TIP]
->
-> 将leader连接到/dev/ttyUSB0，或者修改下面的命令。
-
-```bash
-lerobot-calibrate     --teleop.type=lerobot_teleoperator_firefly --teleop.port=/dev/ttyUSB0 --teleop.id=my_awesome_staraifirefly_arm
-```
-
 ### 配置CAN设备
 
 > [!TIP]

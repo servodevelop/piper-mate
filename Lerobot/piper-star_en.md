@@ -223,16 +223,6 @@ Below are the reference values. Under normal circumstances, the actual limit ref
 | motor_5  |             -180°  |             180°   | No limit; rotate to reference angle |
 | motor_6  |                0°  |             100°   | Rotate to the limit position        |
 
-### leader
-
-> [!TIP]
->
-> Connect the leader to /dev/ttyUSB0, or modify the command below.
-
-```bash
-lerobot-calibrate     --teleop.type=lerobot_teleoperator_violin --teleop.port=/dev/ttyUSB0 --teleop.id=my_awesome_staraiviolin_arm
-```
-
 ### Configure CAN Device
 
 > [!TIP]
