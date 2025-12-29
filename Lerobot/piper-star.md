@@ -132,8 +132,8 @@ For Ubuntu X86:
 6. 安装电机依赖：
 
     ```bash
-    pip install lerobot_teleoperator_violin    #使用 pip 安装
-    pip install lerobot_robot_viola    #使用 pip 安装
+    pip install lerobot_teleoperator_firefly    #使用 pip 安装 firefly
+    pip install lerobot_robot_piper    #使用 pip 安装 piper
     pip install python-can
     pip install piper_sdk
     sudo apt update && sudo apt install can-utils ethtool
@@ -428,8 +428,8 @@ lerobot-replay \
 lerobot-train \
   --dataset.repo_id=starai/record-test \
   --policy.type=act \
-  --output_dir=outputs/train/act_viola_test \
-  --job_name=act_viola_test \
+  --output_dir=outputs/train/act_piper_test \
+  --job_name=act_piper_test \
   --policy.device=cuda \
   --wandb.enable=False \
   --policy.repo_id=starai/my_policy
@@ -443,7 +443,7 @@ lerobot-train \
 
 ```bash
 lerobot-train \
-  --config_path=outputs/train/act_viola_test/checkpoints/last/pretrained_model/train_config.json \
+  --config_path=outputs/train/act_piper_test/checkpoints/last/pretrained_model/train_config.json \
   --resume=true
 ```
 
@@ -453,14 +453,14 @@ lerobot-train \
 
 ```bash
 lerobot-record  \
-  --robot.type=lerobot_robot_viola \
-  --robot.port=/dev/ttyUSB1 \
+  --robot.type=lerobot_robot_piper \
+  --robot.can_name=can0 \
+  --robot.id=my_awesome_staraipiper_arm \
   --robot.cameras="{ up: {type: opencv, index_or_path: /dev/video2, width: 640, height: 480, fps: 30},front: {type: opencv, index_or_path: /dev/video4, width: 640, height: 480, fps: 30}}" \
-  --robot.id=my_awesome_staraiviola_arm \
   --display_data=false \
   --dataset.repo_id=starai/eval_record-test \
   --dataset.single_task="Put lego brick into the transparent box" \
-  --policy.path=outputs/train/act_viola_test/checkpoints/last/pretrained_model
+  --policy.path=outputs/train/act_piper_test/checkpoints/last/pretrained_model
   # <- Teleop optional if you want to teleoperate in between episodes \
   # --teleop.type=lerobot_teleoperator_violin \
   # --teleop.port=/dev/ttyUSB0 \
