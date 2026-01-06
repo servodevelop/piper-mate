@@ -6,8 +6,6 @@
 ![OS](https://img.shields.io/badge/OS-Ubuntu%2022.04-purple?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)
 
-[![GitHub stars](https://img.shields.io/github/stars/Welt-liu/lerobot_teleoperator_pipermate)](https://github.com/Welt-liu/lerobot_teleoperator_pipermate/stargazers)
-
 ---
 
 ## 📖 项目简介
