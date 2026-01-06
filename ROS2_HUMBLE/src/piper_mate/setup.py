@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 from glob import glob
 
-package_name = "star_piper"
+package_name = "piper_mate"
 
 setup(
     name=package_name,
@@ -23,7 +23,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "driver = star_piper.star_piper:main",
+            "driver = piper_mate.piper_mate:main",
         ],
     },
 )

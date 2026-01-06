@@ -9,7 +9,9 @@ setup(
     packages=find_packages(),
     install_requires=[
         "lerobot",
-        "fashionstar-uart-sdk>=1.3.6"
+        "fashionstar-uart-sdk>=1.3.6",
+        "python-can",
+        "piper_sdk"
     ],
     python_requires=">=3.10",
     classifiers=[

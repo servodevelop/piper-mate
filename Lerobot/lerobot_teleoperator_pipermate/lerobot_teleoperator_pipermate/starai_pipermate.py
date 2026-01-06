@@ -8,16 +8,16 @@ from fashionstar_uart_sdk.uart_pocket_handler import (
     Monitor_data
 )
 from lerobot.teleoperators.teleoperator import Teleoperator
-from .config_starai_firefly import FireflyConfig
+from .config_starai_pipermate import PiperMateConfig
 
 logger = logging.getLogger(__name__)
 
 
-class Firefly(Teleoperator):
-    config_class = FireflyConfig
-    name = "starai_firefly"
+class PiperMate(Teleoperator):
+    config_class = PiperMateConfig
+    name = "starai_pipermate"
 
-    def __init__(self, config: FireflyConfig):
+    def __init__(self, config: PiperMateConfig):
         super().__init__(config)
         self.config = config
         self._is_connected = False

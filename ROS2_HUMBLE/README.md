@@ -11,13 +11,17 @@
 
 ## 节点说明
 
-### 1. star_piper节点
+### 1. piper_mate节点
 
 负责读取FashionStar机械臂的舵机角度信息，并转换为Piper手臂所需的关节状态格式。
 
 ### 2. piper_ctrl_single节点
 
 负责控制Piper机械臂，接收关节状态指令并驱动CAN总线上的电机，该节点为piper官方包，详情介绍请看[Piper ROS2-HUMBLE](https://github.com/agilexrobotics/piper_ros/tree/humble/)
+
+> [!TIP]
+>
+> 启动该节点，Piper手臂以默认速度运行，并非全速跟随，如需高跟随，请按照官方说明自行修改代码
 
 ## 安装方法
 
@@ -51,13 +55,13 @@ colcon build
 source install/setup.bash
 ```
 
-### 终端1：启动star_piper节点
+### 终端1：启动piper_mate节点
 
 ```bash
 source install/setup.bash
 sudo chmod 777 /dev/ttyUSB*
-# 启动star_piper节点 禁用力矩
-ros2 run star_piper driver --ros-args -p port:=/dev/ttyUSB0 -p auto_enable:=false
+# 启动piper_mate节点 禁用力矩
+ros2 run piper_mate driver --ros-args -p port:=/dev/ttyUSB0 -p auto_enable:=false
 ```
 
 **参数说明：**
@@ -68,21 +72,26 @@ ros2 run star_piper driver --ros-args -p port:=/dev/ttyUSB0 -p auto_enable:=fals
 **预期输出：**
 
 ```bash
-[INFO] [star_piper_node]: 初始化FashionStar机械臂，端口: /dev/ttyUSB0
-[INFO] [star_piper_node]: 机械臂连接成功
-[INFO] [star_piper_node]: 机械臂力矩已禁用
-[INFO] [star_piper_node]: FashionStar驱动节点初始化完成
+[INFO] [piper_mate_node]: 初始化FashionStar机械臂，端口: /dev/ttyUSB0
+[INFO] [piper_mate_node]: 机械臂连接成功
+[INFO] [piper_mate_node]: 机械臂力矩已禁用
+[INFO] [piper_mate_node]: FashionStar驱动节点初始化完成
 ```
 
 ### 终端2：配置和启动CAN接口
 
+#### 单CAN设备配置
+
 ```bash
-source install/setup.bash
 # 1. 查找所有CAN端口
 bash find_all_can_port.sh
 # 2. 激活can0接口（波特率1000000）
 bash can_activate.sh can0 1000000
-# 3. 启动piper控制节点
+```
+
+```bash
+cd ROS2_HUMBLE
+source install/setup.bash
 ros2 run piper piper_single_ctrl --ros-args -p can_port:=can0 -p auto_enable:=true -p gripper_exist:=true -p gripper_val_mutiple:=2
 ```
 
@@ -160,13 +169,12 @@ sudo ip link set up can0
 ## 安全注意事项
 
 1. **力矩控制**：启动时确保机械臂周围无障碍物
-2. **急停准备**：随时准备物理急停按钮
-3. **限位检查**：确保机械臂在安全范围内运动
-4. **监控运行**：首次运行时密切观察机械臂行为
+2. **限位检查**：确保机械臂在安全范围内运动
+3. **监控运行**：首次运行时密切观察机械臂行为
 
 ## 相关文件说明
 
-- `src/star_piper/star_piper/robo_driver.py`：FashionStar机械臂驱动节点
+- `src/piper_mate/piper_mate/piper_mate.py`：FashionStar机械臂驱动节点
 - `src/piper/piper/piper_ctrl_single_node.py`：Piper机械臂控制节点
 - `find_all_can_port.sh`：CAN端口查找脚本
 - `can_activate.sh`：CAN接口激活脚本

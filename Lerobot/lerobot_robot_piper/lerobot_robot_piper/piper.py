@@ -130,13 +130,14 @@ class Piper(Robot):
         self.piper.MotionCtrl_2(0x01, 0x01, 100, 0xAD)
         # self.piper.MotionCtrl_2(0x01, 0x01, 100, 0x00)
 
-        joint_1 = round(self.clamp(action["Joint_1.pos"],-150,150)*1000)
-        joint_2 = round(self.clamp(action["Joint_2.pos"],0,180)*1000)
-        joint_3 = round(self.clamp(action["Joint_3.pos"],-170,0)*1000)
-        joint_4 = round(self.clamp(action["Joint_4.pos"],-100,100)*1000)
-        joint_5 = round(self.clamp(action["Joint_5.pos"],-70,70)*1000)
-        joint_6 = round(self.clamp(action["Joint_6.pos"],-120,120)*1000)
-        gripper = round(self.clamp(action["Gripper.pos"],0,100)*1000)
+        # Convert tensor values to Python floats before rounding
+        joint_1 = round(self.clamp(float(action["Joint_1.pos"]),-150,150)*1000)
+        joint_2 = round(self.clamp(float(action["Joint_2.pos"]),0,180)*1000)
+        joint_3 = round(self.clamp(float(action["Joint_3.pos"]),-170,0)*1000)
+        joint_4 = round(self.clamp(float(action["Joint_4.pos"]),-100,100)*1000)
+        joint_5 = round(self.clamp(float(action["Joint_5.pos"]),-70,70)*1000)
+        joint_6 = round(self.clamp(float(action["Joint_6.pos"]),-120,120)*1000)
+        gripper = round(self.clamp(float(action["Gripper.pos"]),0,100)*1000)
 
         self.piper.JointCtrl(joint_1, joint_2, joint_3, joint_4, joint_5,joint_6)
 

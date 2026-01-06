@@ -4,27 +4,16 @@
 
 ## Getting Started
 
-3.运行piper sdk里提供的代码，确认piper已经可以正常工作。
+1. [github克隆lerobot](https://github.com/servodevelop/lerobot)
 
-4.安装lerobot， lerobot_teleoperator_firefly 的安装包，teleoperator
+2. 按照piper-star.md文档操作到安装lerobot下第6点安装电机依赖时，请在终端将路径导向该文件夹进行本地安装
 
-```bash
-pip install lerobot                         # 安装lerobot
-#pip install lerobot_robot_piper             # 安装lerobot_robot_piper
-#pip install lerobot_teleoperator_firefly    # 安装lerobot_teleoperator_firefly
-cd lerobot_teleoperator_firefly
-pip install ./
-```
+    ```bash
+    cd ~/PiPER-Mate/Lerobot/lerobot_robot_piper
+    pip install ./
+    cd ~/PiPER-Mate/Lerobot/lerobot_teleoperator_pipermate
+    pip install ./
+    sudo apt update && sudo apt install can-utils ethtool
+    ```
 
-5.  运行遥操作代码。   
-
-```bash
-lerobot-teleoperate \
-    --robot.type=lerobot_robot_piper \
-    --robot.can_name=can0 \
-    --robot.id=lerobot_robot_piper \
-    --teleop.type=lerobot_teleoperator_firefly \
-    --teleop.port=/dev/ttyUSB0 \
-    --teleop.id=lerobot_teleoperator_firefly \
-```
-
+3. 继续按照piper-star.md文档操作

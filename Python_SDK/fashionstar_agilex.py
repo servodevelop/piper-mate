@@ -110,8 +110,8 @@ class FashionStarAgilex:
             self.piper_interface.ModeCtrl(
                 ctrl_mode=0x01,      # 关节控制模式
                 move_mode=0x01,      # 速度控制模式
-                move_spd_rate_ctrl=100  # 速度控制比例
-                # is_mit_mode=0xAD      # MIT模式
+                move_spd_rate_ctrl=100,  # 速度控制比例
+                is_mit_mode=0xAD      # MIT模式
             )
             print("Piper机械臂控制模式设置成功")
         except Exception as e:
@@ -165,15 +165,19 @@ class FashionStarAgilex:
     def get_fashionstar_joint_states(self) -> dict:
         """
         读取FashionStar机械臂的关节状态
-        
+
         Returns:
             包含关节名称和对应位置的字典
+
+        Raises:
+            serial.SerialException: USB连接断开时抛出
+            OSError: 当机械臂需要复位时抛出
         """
         try:
             # 同步读取所有舵机状态
             servos_id = {name: servo_id for name, servo_id in zip(self.joint_names, self.servo_ids)}
             monitor_data = self.fashionstar_handler.sync_read["Monitor"](servos_id)
-            
+
             # 转换关节状态
             joint_states = {}
             for joint_name in self.joint_names:
@@ -181,9 +185,15 @@ class FashionStarAgilex:
                 servo_angle = monitor_data[joint_name].current_position
                 joint_state = self.servoangle2jointstate(servo_id, servo_angle)
                 joint_states[joint_name] = joint_state
-            
+
             return joint_states
-            
+
+        except serial.SerialException as e:
+            # USB连接断开，直接抛出异常
+            raise
+        except OSError as e:
+            # 机械臂需要复位的错误，直接抛出
+            raise
         except Exception as e:
             print(f"读取FashionStar关节状态失败: {e}")
             return {}
@@ -262,7 +272,7 @@ class FashionStarAgilex:
     
     def close(self):
         """关闭连接"""
-        print("关闭机械臂连接...")
+        print("\n关闭机械臂连接...")
         
         # 禁用FashionStar力矩
         self.disable_torque()
@@ -291,8 +301,9 @@ def main():
     FASHIONSTAR_PORT = "/dev/ttyUSB0"    # FashionStar USB端口
     PIPER_CAN_NAME = "can0"              # Piper CAN端口
     GRIPPER_EXIST = True                 # 是否包含夹爪
-    UPDATE_RATE = 100.0                   # 控制频率（Hz）- 可调节
+    UPDATE_RATE = 100.0                  # 控制频率（Hz）- 可调节
 
+    robot_controller = None
     try:
         # 创建机械臂控制器
         robot_controller = FashionStarAgilex(
@@ -330,24 +341,35 @@ def main():
                 time.sleep(update_interval)
                 
             except KeyboardInterrupt:
-                print("\n\n用户停止遥操作")
+                print("\n\n用户手动停止遥操作")
+                break
+            # 核心：捕获USB断开异常，立即终止程序
+            except serial.SerialException as e:
+                print(f"\n\n❌ 致命错误：FashionStar USB连接断开！{e}")
+                break
+            # 捕获机械臂复位错误，立即终止程序
+            except OSError as e:
+                print(f"\n\n❌ 致命错误：{e}")
                 break
             except Exception as e:
                 print(f"\n遥操作过程中出错: {e}")
                 import traceback
                 traceback.print_exc()
-                # 继续运行，不退出
-                time.sleep(1.0)  # 出错后等待1秒再继续
+                time.sleep(1.0)  # 非致命错误，等待1秒继续
         
     except KeyboardInterrupt:
         print("\n\n程序被用户中断")
+    except serial.SerialException as e:
+        print(f"\n\n❌ 程序启动失败：FashionStar USB端口连接失败！{e}")
+    except OSError as e:
+        print(f"\n\n❌ 程序启动失败：{e}")
     except Exception as e:
         print(f"\n程序运行出错: {e}")
         import traceback
         traceback.print_exc()
     finally:
         # 确保连接被正确关闭
-        if 'robot_controller' in locals():
+        if robot_controller is not None:
             robot_controller.close()
 
 

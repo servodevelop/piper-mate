@@ -8,10 +8,9 @@
 
 ## 功能特性
 
-- **实时遥操作**：支持高达60Hz的控制频率
+- **实时遥操作**：支持高控制频率
 - **关节映射**：自动将FashionStar关节角度转换为Piper关节位置
 - **安全保护**：包含关节角度限制和力矩控制
-- **多设备支持**：支持单CAN和多CAN设备配置
 - **夹爪控制**：可选夹爪控制功能
 
 ## 项目结构
@@ -61,7 +60,7 @@ bash can_activate.sh can0 1000000
 ### 2. 运行主程序
 
 ```bash
-python3 fashionstar_agilex.py
+python3 ./Python_SDK/fashionstar_agilex.py
 ```
 
 ### 3. 参数配置
@@ -79,7 +78,7 @@ PIPER_CAN_NAME = "can0"
 GRIPPER_EXIST = True
 
 # 控制频率（Hz）
-UPDATE_RATE = 60.0
+UPDATE_RATE = 100.0
 ```
 
 ## 核心功能
@@ -174,7 +173,7 @@ CAN端口检测脚本，用于：
 
 1. **操作前检查**：确保机械臂周围无障碍物
 2. **紧急停止**：按Ctrl+C可立即停止程序
-3. **力矩控制**：默认禁用FashionStar力矩，避免意外运动
+3. **力矩控制**：默认禁用FashionStar力矩
 4. **关节限制**：系统自动限制关节角度在安全范围内
 
 ## 许可证

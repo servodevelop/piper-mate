@@ -125,11 +125,12 @@ For Ubuntu X86:
     pip3 install numpy==1.26.0  # This version needs to be compatible with torchvision
     ```
 
-5. Install Fashionstar Motor Dependencies:
+5. Install Motor Dependencies:
 
      ```bash
-    pip install lerobot_teleoperator_violin    # Install violin via pip
-    pip install lerobot_robot_viola    # Install viola via pip
+    pip install lerobot_teleoperator_pipermate    # Install pipermate via pip
+    pip install lerobot_robot_piper    # Install piper via pip
+    sudo apt update && sudo apt install can-utils ethtool
     ```
 
 6. Check Pytorch and Torchvision
@@ -162,7 +163,6 @@ lerobot-find-port
 For example：
 
 1. Example output when identifying the leader arm's port (e.g., `/dev/tty.usbmodem575E0031751` on Mac, or possibly `/dev/ttyUSB0` on Linux):
-2. Example output when identifying the follower arm's port (e.g., `/dev/tty.usbmodem575E0032081`on Mac, or possibly `/dev/ttyUSB1` on Linux):
 
 > [!NOTE]
 >
@@ -221,24 +221,30 @@ Below are the reference values. Under normal circumstances, the actual limit ref
 | motor_5  |             -180°  |             180°   | No limit; rotate to reference angle |
 | motor_6  |                0°  |             100°   | Rotate to the limit position        |
 
-### leader
+### Configure CAN Device
 
 > [!TIP]
 >
-> Connect the leader to /dev/ttyUSB0, or modify the command below.
+> Connect the follower to can0
 
 ```bash
-lerobot-calibrate     --teleop.type=lerobot_teleoperator_violin --teleop.port=/dev/ttyUSB0 --teleop.id=my_awesome_staraiviolin_arm
+# 1. Find all CAN ports
+bash find_all_can_port.sh
+# 2. Activate can0 interface (baud rate 1000000)
+bash can_activate.sh can0 1000000
 ```
 
-### follower
-
-> [!TIP]
->
-> Connect the follower to /dev/ttyUSB1, or modify the command below.
+**预期输出：**
 
 ```bash
-lerobot-calibrate     --robot.type=lerobot_robot_viola --robot.port=/dev/ttyUSB1 --robot.id=my_awesome_staraiviola_arm
+Both ethtool and can-utils are installed.
+Interface can0 is connected to USB port 3-9.4:1.0
+-------------------START-----------------------
+Both ethtool and can-utils are installed.
+Expected to configure a single CAN module, detected interface can0 with corresponding USB address 3-9.4:1.0.
+Interface can0 is already activated with a bitrate of 1000000.
+The interface name is already can0.
+-------------------OVER------------------------
 ```
 
 ## Teleoperate
@@ -253,12 +259,12 @@ Then you are ready to teleoperate your robot (It won't display the cameras)! Run
 
 ```bash
 lerobot-teleoperate \
-    --robot.type=lerobot_robot_viola \
-    --robot.port=/dev/ttyUSB1 \
-    --robot.id=my_awesome_staraiviola_arm \
-    --teleop.type=lerobot_teleoperator_violin \
+    --robot.type=lerobot_robot_piper \
+    --robot.can_name=can0 \
+    --robot.id=my_awesome_piper_arm \
+    --teleop.type=lerobot_teleoperator_pipermate \
     --teleop.port=/dev/ttyUSB0 \
-    --teleop.id=my_awesome_staraiviolin_arm
+    --teleop.id=my_awesome_pipermate_arm
 ```
 
 After the program starts, the Hover Lock Technology remains functional.
@@ -308,13 +314,13 @@ After confirming that the external camera is connected, replace the camera infor
 
 ```bash
 lerobot-teleoperate \
-    --robot.type=lerobot_robot_viola \
-    --robot.port=/dev/ttyUSB1 \
-    --robot.id=my_awesome_staraiviola_arm \
+    --robot.type=lerobot_robot_piper \
+    --robot.can_name=can0 \
+    --robot.id=my_awesome_piper_arm \
     --robot.cameras="{ front: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}" \
-    --teleop.type=lerobot_teleoperator_violin \
+    --teleop.type=lerobot_teleoperator_pipermate \
     --teleop.port=/dev/ttyUSB0 \
-    --teleop.id=my_awesome_staraiviolin_arm \
+    --teleop.id=my_awesome_pipermate_arm \
     --display_data=true
 ```
 
@@ -336,13 +342,13 @@ Record 10 episodes.
 
 ```bash
 lerobot-record \
-    --robot.type=lerobot_robot_viola \
-    --robot.port=/dev/ttyUSB1 \
-    --robot.id=my_awesome_staraiviola_arm \
-    --robot.cameras="{ up: {type: opencv, index_or_path: /dev/video2, width: 640, height: 480, fps: 30},front: {type: opencv, index_or_path: /dev/video4, width: 640, height: 480, fps: 30}}" \
-    --teleop.type=lerobot_teleoperator_violin \
+    --robot.type=lerobot_robot_piper \
+    --robot.can_name=can0 \
+    --robot.id=my_awesome_piper_arm \
+    --robot.cameras="{ up: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30},front: {type: opencv, index_or_path: /dev/video4, width: 640, height: 480, fps: 30}}" \
+    --teleop.type=lerobot_teleoperator_pipermate \
     --teleop.port=/dev/ttyUSB0 \
-    --teleop.id=my_awesome_staraiviolin_arm \
+    --teleop.id=my_awesome_pipermate_arm \
     --display_data=true \
     --dataset.repo_id=starai/record-test \
     --dataset.episode_time_s=30 \
@@ -356,9 +362,9 @@ lerobot-record \
 
 ```bash
 lerobot-replay \
-    --robot.type=lerobot_robot_viola \
-    --robot.port=/dev/ttyUSB1 \
-    --robot.id=my_awesome_staraiviola_arm \
+    --robot.type=lerobot_robot_piper \
+    --robot.can_name=can0 \
+    --robot.id=my_awesome_piper_arm \
     --dataset.repo_id=starai/record-test \
     --dataset.episode=1 # choose the episode you want to replay
 ```
@@ -371,8 +377,8 @@ Train a policy to control your robot
 lerobot-train \
   --dataset.repo_id=starai/record-test \
   --policy.type=act \
-  --output_dir=outputs/train/act_viola_test \
-  --job_name=act_viola_test \
+  --output_dir=outputs/train/act_piper_test \
+  --job_name=act_piper_test \
   --policy.device=cuda \
   --wandb.enable=False \
   --policy.repo_id=starai/my_policy
@@ -382,7 +388,7 @@ To resume training from a checkpoint
 
 ```bash
 lerobot-train \
-  --config_path=outputs/train/act_viola_test/checkpoints/last/pretrained_model/train_config.json \
+  --config_path=outputs/train/act_piper_test/checkpoints/last/pretrained_model/train_config.json \
   --resume=true
 ```
 
@@ -392,14 +398,14 @@ Run the following command to record 10 evaluation episodes:
 
 ```bash
 lerobot-record  \
-  --robot.type=lerobot_robot_viola \
-  --robot.port=/dev/ttyUSB1 \
+  --robot.type=lerobot_robot_piper \
+  --robot.can_name=can0 \
+  --robot.id=my_awesome_piper_arm \
   --robot.cameras="{ up: {type: opencv, index_or_path: /dev/video2, width: 640, height: 480, fps: 30},front: {type: opencv, index_or_path: /dev/video4, width: 640, height: 480, fps: 30}}" \
-  --robot.id=my_awesome_staraiviola_arm \
   --display_data=false \
   --dataset.repo_id=starai/eval_record-test \
   --dataset.single_task="Put lego brick into the transparent box" \
-  --policy.path=outputs/train/act_viola_test/checkpoints/last/pretrained_model
+  --policy.path=outputs/train/act_piper_test/checkpoints/last/pretrained_model
   # <- Teleop optional if you want to teleoperate in between episodes \
   # --teleop.type=lerobot_teleoperator_violin \
   # --teleop.port=/dev/ttyUSB0 \

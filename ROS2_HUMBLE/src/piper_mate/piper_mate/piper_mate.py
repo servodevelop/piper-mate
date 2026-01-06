@@ -16,7 +16,7 @@ from fashionstar_uart_sdk.uart_pocket_handler import (
     SyncPositionControlOptions,
 )
 
-STAR_PIPER_NODE = "star_piper_node"  # 驱动节点名称 / driver node name
+PIPER_MATE_NODE = "piper_mate_node"  # 驱动节点名称 / driver node name
 
 # Piper手臂关节角度限制（角度和弧度）
 JOINT_ANGLE_LIMITS = {
@@ -39,7 +39,7 @@ JOINT_RADIAN_LIMITS = {
 
 class FashionStarDriver(Node):
     def __init__(self):
-        super().__init__(STAR_PIPER_NODE)
+        super().__init__(PIPER_MATE_NODE)
         
         # 参数声明
         self.declare_parameter('port', '/dev/ttyUSB0')

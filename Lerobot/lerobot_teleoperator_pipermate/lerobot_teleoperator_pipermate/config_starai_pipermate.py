@@ -3,9 +3,9 @@ from dataclasses import dataclass
 from lerobot.teleoperators.config import TeleoperatorConfig
 
 
-@TeleoperatorConfig.register_subclass("lerobot_teleoperator_firefly")
+@TeleoperatorConfig.register_subclass("lerobot_teleoperator_pipermate")
 @dataclass
-class FireflyConfig(TeleoperatorConfig):
+class PiperMateConfig(TeleoperatorConfig):
     # Port to connect to the arm
     port: str
     baudrate:int = 1000000
