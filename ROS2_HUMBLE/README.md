@@ -1,8 +1,8 @@
-# FashionStar AgileX ROS2 机械臂驱动使用文档
+# PiPER Mate AgileX ROS2 机械臂驱动使用文档
 
 ## 概述
 
-本文档介绍如何启动ROS2驱动节点，通过话题发送接收完成FashionStar机械臂控制松灵机械臂piper
+本文档介绍如何启动ROS2驱动节点，通过话题发送接收完成PiPER Mate机械臂控制松灵机械臂piper
 
 ## 系统要求
 
@@ -13,7 +13,7 @@
 
 ### 1. piper_mate节点
 
-负责读取FashionStar机械臂的舵机角度信息，并转换为Piper手臂所需的关节状态格式。
+负责读取PiPER Mate机械臂的舵机角度信息，并转换为Piper手臂所需的关节状态格式。
 
 ### 2. piper_ctrl_single节点
 
