@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-FashionStar与Piper机械臂集成控制
-通过USB口连接FashionStar机械臂，读取其关节数据并控制Piper机械臂
+PiPER Mate与Piper机械臂集成控制
+通过USB口连接PiPER Mate机械臂，读取其关节数据并控制Piper机械臂
 """
 
 import math
@@ -10,7 +10,7 @@ import serial
 import argparse
 from typing import List, Optional
 
-# 导入FashionStar SDK
+# 导入PiPER_Mate SDK
 from fashionstar_uart_sdk.uart_pocket_handler import (
     PortHandler as starai_PortHandler,
     SyncPositionControlOptions,
@@ -20,9 +20,9 @@ from fashionstar_uart_sdk.uart_pocket_handler import (
 from piper_sdk import C_PiperInterface_V2
 
 
-class FashionStarAgilex:
+class PiPER_MateAgilex:
     """
-    FashionStar与Piper机械臂集成控制类
+    PiPER Mate与Piper机械臂集成控制类
     """
     
     # Piper手臂关节角度限制（角度和弧度）
@@ -49,23 +49,23 @@ class FashionStarAgilex:
                  piper_can_name: str = "can0",
                  gripper_exist: bool = True):
         """
-        初始化FashionStar和Piper机械臂
+        初始化PiPER Mate和Piper机械臂
         
         Args:
-            fashionstar_port: FashionStar机械臂USB端口
+            fashionstar_port: PiPER Mate机械臂USB端口
             piper_can_name: Piper机械臂CAN端口名称
             gripper_exist: 是否包含夹爪
         """
         self.gripper_exist = gripper_exist
         
-        # 初始化FashionStar机械臂
-        print(f"初始化FashionStar机械臂，端口: {fashionstar_port}")
+        # 初始化PiPER_Mate机械臂
+        print(f"初始化PiPER_Mate机械臂，端口: {fashionstar_port}")
         try:
             self.fashionstar_handler = starai_PortHandler(fashionstar_port, 1000000)
             self.fashionstar_handler.openPort()
-            print("FashionStar机械臂连接成功")
+            print("PiPER_Mate机械臂连接成功")
         except Exception as e:
-            print(f"FashionStar机械臂连接失败: {e}")
+            print(f"PiPER_Mate机械臂连接失败: {e}")
             raise
         
         # 舵机配置
@@ -117,7 +117,7 @@ class FashionStarAgilex:
         except Exception as e:
             print(f"Piper机械臂控制模式设置失败: {e}")
 
-        print("FashionStar与Piper机械臂集成控制初始化完成")
+        print("PiPER_Mate与Piper机械臂集成控制初始化完成")
     
     def degrees_to_radians(self, degrees: float) -> float:
         """将角度转换为弧度"""
@@ -133,7 +133,7 @@ class FashionStarAgilex:
     
     def servoangle2jointstate(self, servo_id: int, servo_angle: float) -> float:
         """
-        将FashionStar舵机角度转换为Piper关节位置
+        将PiPER_Mate舵机角度转换为Piper关节位置
         
         Args:
             servo_id: 舵机ID
@@ -164,7 +164,7 @@ class FashionStarAgilex:
     
     def get_fashionstar_joint_states(self) -> dict:
         """
-        读取FashionStar机械臂的关节状态
+        读取PiPER_Mate机械臂的关节状态
 
         Returns:
             包含关节名称和对应位置的字典
@@ -195,12 +195,12 @@ class FashionStarAgilex:
             # 机械臂需要复位的错误，直接抛出
             raise
         except Exception as e:
-            print(f"读取FashionStar关节状态失败: {e}")
+            print(f"读取PiPER_Mate关节状态失败: {e}")
             return {}
     
     def control_piper_joints(self, joint_states: dict):
         """
-        根据FashionStar关节状态控制Piper机械臂
+        根据PiPER_Mate关节状态控制Piper机械臂
         
         Args:
             joint_states: 包含关节名称和对应位置的字典
@@ -243,22 +243,22 @@ class FashionStarAgilex:
             print(f"控制Piper机械臂失败: {e}")
     
     def enable_torque(self):
-        """使能FashionStar力矩"""
+        """使能PiPER_Mate力矩"""
         try:
             # 使用锁定模式使能力矩
             for servo_id in self.servo_ids:
                 self.fashionstar_handler.write["Stop_On_Control_Mode"](servo_id, "locked", 0)
-            print("FashionStar机械臂力矩已使能")
+            print("PiPER_Mate机械臂力矩已使能")
         except Exception as e:
             print(f"使能力矩失败: {e}")
     
     def disable_torque(self):
-        """禁用FashionStar力矩"""
+        """禁用PiPER_Mate力矩"""
         try:
             # 使用解锁模式禁用力矩
             for servo_id in self.servo_ids:
                 self.fashionstar_handler.write["Stop_On_Control_Mode"](servo_id, "unlocked", 900)
-            print("FashionStar机械臂力矩已禁用")
+            print("PiPER_Mate机械臂力矩已禁用")
         except Exception as e:
             print(f"禁用力矩失败: {e}")
     
@@ -274,7 +274,7 @@ class FashionStarAgilex:
         """关闭连接"""
         print("\n关闭机械臂连接...")
         
-        # 禁用FashionStar力矩
+        # 禁用PiPER_Mate力矩
         self.disable_torque()
         
         # 关闭Piper连接
@@ -284,12 +284,12 @@ class FashionStarAgilex:
         except Exception as e:
             print(f"关闭Piper连接失败: {e}")
         
-        # 关闭FashionStar连接
+        # 关闭PiPER_Mate连接
         try:
             self.fashionstar_handler.closePort()
-            print("FashionStar机械臂连接已关闭")
+            print("PiPER_Mate机械臂连接已关闭")
         except Exception as e:
-            print(f"关闭FashionStar连接失败: {e}")
+            print(f"关闭PiPER_Mate连接失败: {e}")
         
         print("所有连接已关闭")
 
@@ -298,7 +298,7 @@ def main():
     """主函数 - 预设参数，持续遥操作"""
     
     # 预设参数 - 根据实际情况修改这些值
-    FASHIONSTAR_PORT = "/dev/ttyUSB0"    # FashionStar USB端口
+    PIPERMATE_PORT = "/dev/ttyUSB0"    # PiPER_Mate USB端口
     PIPER_CAN_NAME = "can0"              # Piper CAN端口
     GRIPPER_EXIST = True                 # 是否包含夹爪
     UPDATE_RATE = 100.0                  # 控制频率（Hz）- 可调节
@@ -306,13 +306,13 @@ def main():
     robot_controller = None
     try:
         # 创建机械臂控制器
-        robot_controller = FashionStarAgilex(
-            fashionstar_port=FASHIONSTAR_PORT,
+        robot_controller = PiPER_MateAgilex(
+            fashionstar_port=PIPERMATE_PORT,
             piper_can_name=PIPER_CAN_NAME,
             gripper_exist=GRIPPER_EXIST
         )
         # 开始持续遥操作
-        print(f"\n开始FashionStar控制Piper,控制频率{UPDATE_RATE}Hz...")
+        print(f"\n开始PiPER_Mate控制Piper,控制频率{UPDATE_RATE}Hz...")
         print("按 Ctrl+C 停止遥操作")
         print("=" * 120)
         
@@ -322,7 +322,7 @@ def main():
         
         while True:
             try:
-                # 读取FashionStar关节状态
+                # 读取PiPER_Mate关节状态
                 joint_states = robot_controller.get_fashionstar_joint_states()
                 
                 if joint_states:
@@ -345,7 +345,7 @@ def main():
                 break
             # 核心：捕获USB断开异常，立即终止程序
             except serial.SerialException as e:
-                print(f"\n\n❌ 致命错误：FashionStar USB连接断开！{e}")
+                print(f"\n\n❌ 致命错误：PiPER_Mate USB连接断开！{e}")
                 break
             # 捕获机械臂复位错误，立即终止程序
             except OSError as e:
@@ -360,7 +360,7 @@ def main():
     except KeyboardInterrupt:
         print("\n\n程序被用户中断")
     except serial.SerialException as e:
-        print(f"\n\n❌ 程序启动失败：FashionStar USB端口连接失败！{e}")
+        print(f"\n\n❌ 程序启动失败：PiPER_Mate USB端口连接失败！{e}")
     except OSError as e:
         print(f"\n\n❌ 程序启动失败：{e}")
     except Exception as e:
