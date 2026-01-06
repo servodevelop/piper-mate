@@ -2,7 +2,7 @@
 
 ![Programming Language](https://img.shields.io/badge/language-Python-blue?style=flat-square)
 ![Framework](https://img.shields.io/badge/framework-ROS2%20Humble-orange?style=flat-square)
-![Hardware](https://img.shields.io/badge/hardware-FashionStar%20%2B%20Piper-green?style=flat-square)
+![Hardware](https://img.shields.io/badge/hardware-PiPER%20Mate%20%2B%20Piper-green?style=flat-square)
 ![OS](https://img.shields.io/badge/OS-Ubuntu%2022.04-purple?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-yellow?style=flat-square)
 
