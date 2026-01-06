@@ -43,7 +43,7 @@ sudo apt update && sudo apt install can-utils ethtool
 sudo pip install serial fashionstar-uart-sdk piper-sdk python-can scipy
 
 # 2. 配置CAN接口
-cd PiPER-Mate
+cd piper-mate
 bash find_all_can_port.sh
 bash can_activate.sh can0 1000000
 
