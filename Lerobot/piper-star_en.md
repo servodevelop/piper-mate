@@ -16,41 +16,6 @@ https://github.com/user-attachments/assets/dcbd27da-9e24-4562-b682-ff3212f6ac4a
 ## Main Features
 
 - Ready to Go — No Assembly Required. Just Unbox and Dive into the World of AI.
-- 6+1 Degrees of Freedom and a 470mm Reach — Built for Versatility and Precision.
-- Powered by Dual Brushless Bus Servos — Smooth, Silent, and Strong with up to 300g Payload.
-- Parallel Gripper with 66mm Maximum Opening — Modular Fingertips for Quick-Replace Flexibility.
-- Exclusive Hover Lock Technology — Instantly Freeze Leader Arm at Any Position with a Single Press.
-
-## Specifications
-
-![image-20250709072845215](../media/starai/1-114090080-fashionstar-star-arm-cello-violin.jpg)
-
-| Item                 | Follower Arm \| Viola                             | Leader Arm \|Violin                               |
-| -------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| Degrees of Freedom   | 6+1                                               | 6+1                                               |
-| Reach                | 470mm                                             | 470mm                                             |
-| Span                 | 940mm                                             | 940mm                                             |
-| Repeatability        | 2mm                                               | -                                                 |
-| Working Payload      | 300g (with 70% Reach)                             | -                                                 |
-| Servos               | RX8-U50H-M x2<br/>RA8-U25H-M x4<br/>RA8-U26H-M x1 | RX8-U50H-M x2<br/>RA8-U25H-M x4<br/>RA8-U26H-M x1 |
-| Parallel Gripper Ki  | √                                                 | -                                                 |
-| Wrist Rotate         | Yes                                               | Yes                                               |
-| Hold at any Position | Yes                                               | Yes (with handle button)                          |
-| Wrist Camera Mount   | √                                                 | -                                                 |
-| Works with LeRobot   | √                                                 | √                                                 |
-| Works with ROS 2     | √                                                 | /                                                 |
-| Works with MoveIt    | √                                                 | /                                                 |
-| Works with Gazebo    | √                                                 | /                                                 |
-| Communication Hub    | UC-01                                             | UC-01                                             |
-| Power Supply         | 12v/120w                                          | 12v/120w                                          |
-
-For more information about the servo, please refer to the link below.
-
-[RA8-U25H-M](https://fashionrobo.com/actuator-u25/23396/)
-
-[RX18-U100H-M](https://fashionrobo.com/actuator-u100/22853/)
-
-[RX8-U50H-M](https://fashionrobo.com/actuator-u50/136/)
 
 ## Initial Environment Setup
 
@@ -146,11 +111,21 @@ For Ubuntu X86:
 
 ### Unboxing
 
-https://github.com/user-attachments/assets/56130bd9-21ee-4ae4-9cac-3817ac4d659f
-
-UC-01 debuging board switch：
-
-<img src="./../media/starai/image-20250722141339815.png" alt="image-20241230113058856" style="zoom:30%;" />
+```bash
+┌─────────────────┐         USB          ┌─────────────────┐
+│                 │◄────────────────────►│                 │
+│ FashionStar     │                      │   计算机        │
+│   机械臂        │                      │ (Ubuntu 22.04)  │
+└─────────────────┘                      └────────┬────────┘
+                                                  │
+                                                 USB
+                                                  │
+┌─────────────────┐         CAN          ┌────────┴────────┐
+│                 │◄────────────────────►│                 │
+│   Piper        │                      │ CAN转USB适配器  │
+│   机械臂       │                      │                 │
+└─────────────────┘                      └─────────────────┘
+```
 
 ### Configure arm port
 
@@ -167,30 +142,11 @@ For example：
 > [!NOTE]
 >
 > If the ttyUSB0 serial port cannot be identified, try the following solutions:
->
-> List all USB ports.
->
-> ```sh
-> lsusb
-> ```
->
-> <img src="./../media/starai/image-20241230112928879-1749511998299-1.png" alt="image-20241230112928879-1749511998299-1" style="zoom:80%;" />
->
-> Once identified, check the information of the ttyusb.
->
-> ```sh
-> sudo dmesg | grep ttyUSB
-> ```
->
-> <img src="./../media/starai/image-20241230113058856-1749512093309-2.png" alt="image-20241230113058856" style="zoom:80%;" />
->
-> The last line indicates a disconnection because brltty is occupying the USB. Removing brltty will resolve the issue.
+> Removing brltty will resolve the issue.
 >
 > ```sh
 > sudo apt remove brltty
 > ```
->
-> <img src="./../media/starai/image-20241230113211143-1749512102599-4.png" alt="image-20241230113211143" style="zoom: 80%;" />
 >
 > Finally，use chmod command.
 >
@@ -198,28 +154,6 @@ For example：
 > sudo chmod 777 /dev/ttyUSB*
 > ```
 >
-
-## Calibrate
-
-### For Initial Calibration
-
-Please rotate each joint left and right to the corresponding positions.
-
-### For Re-Calibration
-
-Follow the on-screen prompt: enter the letter "c" and press the Enter key.
-
-Below are the reference values. Under normal circumstances, the actual limit reference values should fall within the range of **±10°** of these references.
-
-| Servo ID | Lower Angle Limit | Upper Angle Limit | Notes                               |
-| -------- | -----------------: | -----------------: | ----------------------------------- |
-| motor_0  |             -180°  |             180°   | Rotate to the limit position        |
-| motor_1  |              -90°  |              90°   | Rotate to the limit position        |
-| motor_2  |              -90°  |              90°   | Rotate to the limit position        |
-| motor_3  |             -180°  |             180°   | No limit; rotate to reference angle |
-| motor_4  |              -90°  |              90°   | Rotate to the limit position        |
-| motor_5  |             -180°  |             180°   | No limit; rotate to reference angle |
-| motor_6  |                0°  |             100°   | Rotate to the limit position        |
 
 ### Configure CAN Device
 
@@ -249,12 +183,6 @@ The interface name is already can0.
 
 ## Teleoperate
 
-https://github.com/user-attachments/assets/23b3aa00-9889-48d3-ae2c-00ad50595e0a
-
-Move the arm to the position shown in the diagram and set it to standby.
-
-![image-20250717064511074](../media/starai/image-20250717064511074.png)
-
 Then you are ready to teleoperate your robot (It won't display the cameras)! Run this simple script :
 
 ```bash
@@ -270,8 +198,6 @@ lerobot-teleoperate \
 After the program starts, the Hover Lock Technology remains functional.
 
 ## Add cameras
-
-https://github.com/user-attachments/assets/82650b56-96be-4151-9260-2ed6ab8b133f
 
 After inserting your two USB cameras, run the following script to check the port numbers of the cameras. It is important to remember that the camera must not be connected to a USB Hub; instead, it should be plugged directly into the device. The slower speed of a USB Hub may result in the inability to read image data.
 
@@ -325,8 +251,6 @@ lerobot-teleoperate \
 ```
 
 ## Record the dataset
-
-https://github.com/user-attachments/assets/8bb25714-783a-4f29-83dd-58b457aed80c
 
 > [!TIP]
 >

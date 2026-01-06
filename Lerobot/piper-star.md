@@ -14,41 +14,6 @@
 ## 特点内容
 
 - **零组装**:  即刻上手｜一开箱即踏入AI时代。
-- 6+1自由度结构设计，470mm臂展，赋予无限操作可能。
-- 配备2颗全金属无刷总线舵机，稳定驱动，轻松承重300g。
-- 智能平行夹爪，最大开合66mm，模块化指尖，精准抓取不设限。
-- 独家悬停控制系统，指尖一按，Leader Arm稳停于任意姿态。
-
-## 规格参数
-
-![image-20250709072845215](../media/starai/1-114090080-fashionstar-star-arm-cello-violin.jpg)
-
-| Item                 | Follower Arm \| Viola                             | Leder Arm \|Violin                                |
-| -------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| Degrees of Freedom   | 6+1                                                 | 6+1                                               |
-| Reach                | 470mm                                             | 470mm                                             |
-| Span                 | 940mm                                             | 940mm                                             |
-| Repeatability        | 2mm                                               | -                                                 |
-| Working Payload      | 300g (with 70% Reach)                            | -                                                 |
-| Servos               | RX8-U50H-M x2<br/>RA8-U25H-M x4<br/>RA8-U26H-M x1 | RX8-U50H-M x2<br/>RA8-U25H-M x4<br/>RA8-U26H-M x1 |
-| Parallel Gripper Ki  | √                                                 | -                                                 |
-| Wrist Rotate         | Yes                                               | Yes                                               |
-| Hold at any Position | Yes                                               | Yes (with handle button)                          |
-| Wrist Camera Mount   | √                                                 | -                                                 |
-| Works with LeRobot   | √                                                 | √                                                 |
-| Works with ROS 2     | √                                                 | /                                                 |
-| Works with MoveIt    | √                                                 | /                                                 |
-| Works with Gazebo    | √                                                 | /                                                 |
-| Communication Hub    | UC-01                                             | UC-01                                             |
-| Power Supply         | 12v/120w                                          | 12v/120w                                          |
-
-有关舵机更多资讯，请访问以下链接。
-
-[RA8-U25H-M](https://fashionrobo.com/actuator-u25/23396/)
-
-[RX18-U100H-M](https://fashionrobo.com/actuator-u100/22853/)
-
-[RX8-U50H-M](https://fashionrobo.com/actuator-u50/136/)
 
 ## 初始环境搭建
 
@@ -150,7 +115,21 @@ For Ubuntu X86:
 
 ### 接线
 
-https://github.com/user-attachments/assets/56130bd9-21ee-4ae4-9cac-3817ac4d659f
+```bash
+┌─────────────────┐         USB          ┌─────────────────┐
+│                 │◄────────────────────►│                 │
+│ FashionStar     │                      │   计算机        │
+│   机械臂        │                      │ (Ubuntu 22.04)  │
+└─────────────────┘                      └────────┬────────┘
+                                                  │
+                                                 USB
+                                                  │
+┌─────────────────┐         CAN          ┌────────┴────────┐
+│                 │◄────────────────────►│                 │
+│   Piper        │                      │ CAN转USB适配器  │
+│   机械臂       │                      │                 │
+└─────────────────┘                      └─────────────────┘
+```
 
 ### 手臂端口设置
 
@@ -167,30 +146,11 @@ lerobot-find-port
 > [!NOTE]
 >
 > 如果识别不到ttyUSB0串口信息。尝试以下方法。
->
-> 列出所有usb口。
->
-> ```sh
-> lsusb
-> ```
->
-> <img src="./../media/starai/image-20241230112928879-1749511998299-1.png" alt="image-20241230112928879-1749511998299-1" style="zoom:80%;" />
->
-> 识别成功，查看ttyusb的信息
->
-> ```sh
-> sudo dmesg | grep ttyUSB
-> ```
->
-> <img src="./../media/starai/image-20241230113058856-1749512093309-2.png" alt="image-20241230113058856" style="zoom:80%;" />
->
-> 最后一行显示断连，因为brltty在占用该USB设备号，移除掉就可以了
+> 因为brltty在占用该USB设备号，移除掉就可以了
 >
 > ```sh
 > sudo apt remove brltty
 > ```
->
-> <img src="./../media/starai/image-20241230113211143-1749512102599-4.png" alt="image-20241230113211143" style="zoom: 80%;" />
 >
 > 最后，赋予权限
 >
@@ -198,24 +158,6 @@ lerobot-find-port
 > sudo chmod 777 /dev/ttyUSB*
 > ```
 >
-
-## 校准
-
-如果是第一次校准，请对每个关节左右转动到极限位置。
-
-如果是重新校准，按照命令提示输入字母c后按Enter键。
-
-下面是参考值,通常情况下，真实的限位参考值的±10°范围内。
-
-| 舵机ID  | 角度下限参考值 | 角度上限参考值 | 备注                               |
-| ------- | -------------: | -------------: | ---------------------------------- |
-| motor_0 |          -180° |           180° | 转动到限位处                       |
-| motor_1 |           -90° |            90° | 转动到限位处                       |
-| motor_2 |           -90° |            90° | 转动到限位处                       |
-| motor_3 |          -180° |           180° | 没有限位，需转动到角度上下限参考值 |
-| motor_4 |           -90° |            90° | 转动到限位处                       |
-| motor_5 |          -180° |           180° | 没有限位，需转动到角度上下限参考值 |
-| motor_6 |             0° |           100° | 转动到限位处                       |
 
 ### 配置CAN设备
 
@@ -245,12 +187,6 @@ The interface name is already can0.
 
 ## 遥操作
 
-https://github.com/user-attachments/assets/23b3aa00-9889-48d3-ae2c-00ad50595e0a
-
-将手臂移动至图上位置待机。
-
-![image-20250717064511074](../media/starai/image-20250717064511074.png)
-
 您已准备好遥操作您的机器人（不包括摄像头）！运行以下简单脚本：
 
 ```bash
@@ -271,8 +207,6 @@ lerobot-teleoperate \
 程序启动后，悬停按钮依旧生效。
 
 ## 添加摄像头
-
-https://github.com/user-attachments/assets/82650b56-96be-4151-9260-2ed6ab8b133f
 
 在插入您的两个 USB 摄像头后，运行以下脚本以检查摄像头的端口号，切记摄像头避免插在USB Hub上，USB Hub速率太慢会导致读不到图像数据。
 
@@ -326,8 +260,6 @@ lerobot-teleoperate \
 ```
 
 ## 数据集制作采集
-
-https://github.com/user-attachments/assets/8bb25714-783a-4f29-83dd-58b457aed80c
 
 > [!TIP]
 >

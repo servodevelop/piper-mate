@@ -1,4 +1,4 @@
-# lerobot_teleoperator_pipermate
+# lerobot_pipermate
 
 ## Getting Started
 

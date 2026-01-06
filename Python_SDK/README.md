@@ -13,17 +13,6 @@
 - **安全保护**：包含关节角度限制和力矩控制
 - **夹爪控制**：可选夹爪控制功能
 
-## 项目结构
-
-```bash
-fashionstar_agilex/
-├── fashionstar_agilex.py     # 主控制程序
-├── can_activate.sh           # 单CAN设备激活脚本
-├── can_config.sh             # CAN设备配置脚本
-├── can_muti_activate.sh      # 多CAN设备激活脚本
-└── find_all_can_port.sh      # CAN端口检测脚本
-```
-
 ## 系统要求
 
 ### 硬件要求
