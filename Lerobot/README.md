@@ -4,7 +4,7 @@
 
 1. [github克隆lerobot](https://github.com/servodevelop/lerobot)
 
-2. [piper-star](./Lerobot/README.md)
+2. [piper-star](./Lerobot/piper-star.md)
 
 3. 按照piper-star文档操作到安装lerobot下第6点安装电机依赖时，请在终端将路径导向该文件夹进行本地安装
 
