@@ -30,7 +30,7 @@ sudo apt update
 sudo apt install ethtool can-utils
 
 # Python依赖
-sudo pip install serial fashionstar-uart-sdk piper-sdk python-can scipy
+sudo pip install pyserial fashionstar-uart-sdk piper-sdk python-can scipy
 ```
 
 ## 快速开始
