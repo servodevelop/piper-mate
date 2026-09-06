@@ -1,5 +1,14 @@
 # PiPER-Mate
 
+[中文](README.zh.md)
+
+## Ecosystem
+
+piper-mate is the main repository for the PiPER-Mate robotic arm project within the Star Arm 102 ecosystem, covering leader-follower teleoperation with Python SDK, ROS 2, and LeRobot workflows.
+
+- 🔗 [Star Arm 102 Series Hub](https://fashionstar.com.hk/robot-arm/star-arm-102/)
+- 🐙 [Main Repo: Star-Arm-102](https://github.com/servodevelop/Star-Arm-102)
+
 ![Programming Language](https://img.shields.io/badge/language-Python-blue?style=flat-square)
 ![Framework](https://img.shields.io/badge/framework-ROS2%20Humble-orange?style=flat-square)
 ![Hardware](https://img.shields.io/badge/hardware-PiPER%20Mate%20%2B%20Piper-green?style=flat-square)
@@ -8,241 +17,233 @@
 
 ---
 
-## 📖 项目简介
+## 📖 Project Overview
 
-PiPER-Mate 是一个机械臂遥操作控制项目，支持通过 **PiPER Mate 机械臂** 实时远程控制 **Piper 机械臂**。项目提供三种控制方式，适用于机器人研究、遥操作教学、AI训练数据采集等多种场景。
+PiPER-Mate is a robotic arm teleoperation project that uses a **PiPER Mate robotic arm** to remotely control a **Piper robotic arm** in real time. It provides three control methods for robotics research, teleoperation teaching, and AI training data collection.
 
-### ✨ 核心特性
+### ✨ Key Features
 
-- 🤖 **多控制方式**：支持 ROS2 HUMBLE、Lerobot 框架、Python SDK 三种控制模式
-- ⚡ **高控制频率**：支持最高 100Hz 的实时遥操作
-- 🔄 **关节自动映射**：自动将 PiPER Mate 关节角度转换为 Piper 控制指令
-- 🛡️ **安全保护**：内置关节角度限制、力矩控制和异常检测机制
-- 🎯 **夹爪控制**：支持可选的夹爪协同控制功能
+- 🤖 **Multiple control methods**: ROS 2 Humble, the LeRobot framework, and Python SDK
+- ⚡ **High control frequency**: real-time teleoperation at up to 100 Hz
+- 🔄 **Automatic joint mapping**: converts PiPER Mate joint angles into Piper control commands
+- 🛡️ **Safety protection**: built-in joint limits, torque control, and exception detection
+- 🎯 **Gripper control**: optional coordinated gripper control
 
-### 产品规格
+### Product Specifications
 
-|产品型号|Piper Mate|
+|Product model|Piper Mate|
 |---|---|
-|臂    展|400mm |
-|自由度|6\+1|
-|关节范围<br>|关节 0: ±154°<br>关节1: 0°\~195°<br>关节 2: \-175°\~0°<br>关节 3: 102°\~102°<br>关节 4: \-142°\~142°<br>关节 5:  ±120°|
-|舵机型号|RP6\-U15H\-M|
-|舵机规格<br>|电压范围：9\.0\-12\.6v<br>马达类型：空心杯<br>编  码  器：12bit绝对值编码器<br>减  速  比：257:1<br>外壳材料：全铝合金<br>通讯协议：UART总线<br>静态扭矩：15kg\-cm<br>动态扭矩：6kg\-cm<br>空载速度：100rpm<br>堵转电流：2A<br>外观尺寸：31\.5 × 21 × 27\.6mm<br>产品重量：41g|
-|通讯模块|UC\-01|
-|电    源|12V@3A|
-|重    量|500g|
+|Arm span|400mm |
+|DOF|6\+1|
+|Joint range<br>|Joint 0: ±154°<br>Joint 1: 0°\~195°<br>Joint 2: \-175°\~0°<br>Joint 3: 102°\~102°<br>Joint 4: \-142°\~142°<br>Joint 5:  ±120°|
+|Servo model|RP6\-U15H\-M|
+|Servo specifications<br>|Voltage range: 9\.0\-12\.6v<br>Motor type: coreless<br>Encoder: 12-bit absolute encoder<br>Gear ratio: 257:1<br>Housing: all-aluminum alloy<br>Communication protocol: UART bus<br>Static torque: 15kg\-cm<br>Dynamic torque: 6kg\-cm<br>No-load speed: 100rpm<br>Stall current: 2A<br>Dimensions: 31\.5 × 21 × 27\.6mm<br>Product weight: 41g|
+|Communication module|UC\-01|
+|Power supply|12V@3A|
+|Weight|500g|
 ---
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### Requirements
 
-| 项目 | 要求 |
+| Item | Requirement |
 |------|------|
-| 操作系统 | Ubuntu 22.04 |
-| ROS版本 | ROS2 Humble |
-| 硬件设备 | PiPER Mate机械臂 + Piper 机械臂 |
-| 驱动程序 | [CH340 USB驱动](https://www.wch.cn/downloads/CH341SER_EXE.html) |
+| Operating system | Ubuntu 22.04 |
+| ROS version | ROS2 Humble |
+| Hardware | PiPER Mate robotic arm + Piper robotic arm |
+| Driver | [CH340 USB Driver](https://www.wch.cn/downloads/CH341SER_EXE.html) |
 
-### 安装步骤
+### Installation
 
-#### 方式一：Python SDK（推荐新手）
+#### Method 1: Python SDK (recommended for beginners)
 
 ```bash
-# 1. 安装依赖
+# 1. Install dependencies
 sudo apt update && sudo apt install can-utils ethtool
 sudo pip install pyserial fashionstar-uart-sdk piper-sdk python-can scipy
 
-# 2. 配置CAN接口
+# 2. Configure the CAN interface
 cd piper-mate
 bash find_all_can_port.sh
 bash can_activate.sh can0 1000000
 
-# 3. 运行程序
+# 3. Run the program
 sudo chmod 777 /dev/ttyUSB*
 python3 ./Python_SDK/piper_pipermate.py
 ```
 
-#### 方式二：ROS2 HUMBLE
+#### Method 2: ROS 2 Humble
 
 ```bash
-# 1. 安装ROS2依赖
+# 1. Install ROS 2 dependencies
 cd ROS2_HUMBLE
 colcon build
 source install/setup.bash
 
-# 2. 启动节点（需要两个终端）
-# 终端1：启动PiPER Mate驱动
+# 2. Start nodes (two terminals required)
+# Terminal 1: start the PiPER Mate driver
 ros2 run piper_mate driver --ros-args -p port:=/dev/ttyUSB0 -p auto_enable:=false
 
-# 终端2：启动Piper控制
+# Terminal 2: start Piper control
 bash can_activate.sh can0 1000000
 ros2 run piper piper_single_ctrl --ros-args -p can_port:=can0 -p auto_enable:=true
 ```
 
-#### 方式三：Lerobot 框架
+#### Method 3: LeRobot framework
 
 ```bash
-# 参考Lerobot/README.md配置说明
+# See Lerobot/README.md for configuration instructions
 ```
 
 ---
 
-## 📂 项目结构
+## 📂 Project Structure
 
 ```bash
 PiPER-Mate/
-├── Python_SDK/                  # Python SDK控制方式
-│   ├── piper_pipermate.py       # 主控制程序
-│   └── README.md                # 详细使用文档
-├── ROS2_HUMBLE/                 # ROS2控制方式
-│   ├── src/piper/               # Piper驱动节点
-│   ├── src/piper_mate/          # Piper_mate驱动节点
-│   ├── src/piper_msgs/          # Piper消息定义
-│   └── README.md                # ROS2使用文档
-├── Lerobot/                     # Lerobot框架控制方式
-│   ├── lerobot_robot_piper/     # Piper机器人配置
-│   ├── lerobot_teleoperator_pipermate/  # 遥操作器
-│   └── piper-star_en.md         # Lerobot使用文档（英文）
-│   └── piper-star.md            # Lerobot使用文档
-│   └── README.md                # 使用步骤
-├── can_activate.sh              # CAN接口激活（根目录）
-├── can_config.sh                # CAN接口配置
-└── README.md                    # 本文档
+├── Python_SDK/                  # Python SDK control workflow
+│   ├── piper_pipermate.py       # Main control program
+│   └── README.md                # Detailed usage documentation
+├── ROS2_HUMBLE/                 # ROS 2 control workflow
+│   ├── src/piper/               # Piper driver node
+│   ├── src/piper_mate/          # Piper_mate driver node
+│   ├── src/piper_msgs/          # Piper message definitions
+│   └── README.md                # ROS 2 usage documentation
+├── Lerobot/                     # LeRobot control workflow
+│   ├── lerobot_robot_piper/     # Piper robot configuration
+│   ├── lerobot_teleoperator_pipermate/  # Teleoperator
+│   └── piper-star_en.md         # LeRobot documentation (English)
+│   └── piper-star.md            # LeRobot documentation
+│   └── README.md                # Usage steps
+├── can_activate.sh              # CAN interface activation (repository root)
+├── can_config.sh                # CAN interface configuration
+└── README.md                    # This document
 ```
 
 ---
 
-## 🎯 控制方式对比
+## 🎯 Control Method Comparison
 
-| 特性 | Python SDK | ROS2 HUMBLE | Lerobot |
+| Feature | Python SDK | ROS2 HUMBLE | Lerobot |
 |------|------------|-------------|---------|
-| 难度 | ⭐ 简单 | ⭐⭐⭐ 中等 | ⭐⭐⭐⭐⭐ 复杂 |
-| 实时性 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| 扩展性 | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| 适用场景 | 快速测试、教学 | 机器人系统集成 | AI训练、研究 |
+| Difficulty | ⭐ Easy | ⭐⭐⭐ Medium | ⭐⭐⭐⭐⭐ Advanced |
+| Real-time performance | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
+| Extensibility | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Use cases | Quick testing, teaching | Robotic system integration | AI training, research |
 
 ---
 
-## 🔧 硬件连接
+## 🔧 Hardware Connection
 
-### 连接拓扑
+### Connection Topology
 
-```bash
-┌─────────────────┐         USB          ┌─────────────────┐
-│                 │◄────────────────────►│                 │
-│   PiPER Mate    │                      │      计算机      │
-│     机械臂       │                      │ (Ubuntu 22.04)  │
-└─────────────────┘                      └────────┬────────┘
-                                                  │
-                                                 USB
-                                                  │
-┌─────────────────┐         CAN          ┌────────┴────────┐
-│                 │◄────────────────────►│                 │
-│      Piper      │                      │  CAN转USB适配器  │
-│      机械臂      │                      │                 │
-└─────────────────┘                      └─────────────────┘
-```
+~~~text
+PiPER Mate robotic arm <-- USB --> Computer (Ubuntu 22.04)
+                                      |
+                                     USB
+                                      |
+Piper robotic arm     <-- CAN --> CAN-to-USB adapter
+~~~
 
 ---
 
-## 📊 关节映射
+## 📊 Joint Mapping
 
-系统自动将 PiPER Mate 的 6 个关节映射到 Piper 机械臂：
+The system automatically maps the six PiPER Mate joints to the Piper robotic arm:
 
-| 关节 | PiPER Mate 角度 | Piper 弧度 | 方向 |
+| Joint | PiPER Mate angle | Piper radians | Direction |
 |------|------------------|------------|------|
-| Joint1 | -150° ~ 150° | -2.62 ~ 2.62 rad | 反向 |
-| Joint2 | 0° ~ 180° | 0 ~ 3.14 rad | 正向 |
-| Joint3 | -170° ~ 0° | -2.97 ~ 0 rad | 正向 |
-| Joint4 | -100° ~ 100° | -1.75 ~ 1.75 rad | 反向 |
-| Joint5 | -70° ~ 70° | -1.22 ~ 1.22 rad | 正向 |
-| Joint6 | -120° ~ 120° | -2.09 ~ 2.09 rad | 反向 |
+| Joint1 | -150° ~ 150° | -2.62 ~ 2.62 rad | Reverse |
+| Joint2 | 0° ~ 180° | 0 ~ 3.14 rad | Forward |
+| Joint3 | -170° ~ 0° | -2.97 ~ 0 rad | Forward |
+| Joint4 | -100° ~ 100° | -1.75 ~ 1.75 rad | Reverse |
+| Joint5 | -70° ~ 70° | -1.22 ~ 1.22 rad | Forward |
+| Joint6 | -120° ~ 120° | -2.09 ~ 2.09 rad | Reverse |
 
 ---
 
-## ⚠️ 安全注意事项
+## ⚠️ Safety Notes
 
-1. **操作前检查**：确保机械臂周围无障碍物，工作空间安全
-2. **急停控制**：程序运行时按 `Ctrl+C` 可立即停止
-3. **关节限制**：系统已自动设置安全角度限制，避免越界运动
-4. **电源管理**：确保机械臂供电稳定，避免电压波动
+1. **Pre-operation check**: ensure that the arm is clear of obstacles and the workspace is safe.
+2. **Emergency stop**: press `Ctrl+C` while the program is running to stop immediately.
+3. **Joint limits**: safety angle limits are set automatically to prevent out-of-range motion.
+4. **Power management**: ensure stable power to avoid voltage fluctuations.
 
 ---
 
-## 🐛 故障排除
+## 🐛 Troubleshooting
 
-### 常见问题
+### Common Issues
 
-**Q1: 找不到 `/dev/ttyUSB0` 设备？**
+**Q1: Cannot find the `/dev/ttyUSB0` device?**
 
 ```bash
-# 检查USB设备
+# Check USB devices
 ls -l /dev/ttyUSB*
 
-# 检查CH340驱动
+# Check the CH340 driver
 lsusb | grep CH340
 
-# 如果没有安装驱动，请从官网下载安装
+# If the driver is missing, download and install it from the official website.
 ```
 
-**Q2: CAN 接口无法激活？**
+**Q2: Cannot activate the CAN interface?**
 
 ```bash
-# 查找CAN端口
+# Find CAN ports
 bash find_all_can_port.sh
 
-# 手动激活CAN接口
+# Activate the CAN interface manually
 sudo ip link set can0 type can bitrate 1000000
 sudo ip link set up can0
 
-# 检查CAN接口状态
+# Check CAN interface status
 ip link show can0
 ```
 
-**Q3: 机械臂连接失败？**
+**Q3: Robotic arm connection failed?**
 
-- 检查USB线连接是否松动
-- 确认机械臂电源已开启
-- 检查驱动板开关位置（应拨向电源接口一侧）
-- 尝试更换USB端口
+- Check whether the USB cable is loose.
+- Confirm that the robotic arm is powered on.
+- Check the driver-board switch position (it should point toward the power connector).
+- Try a different USB port.
 
-**Q4: USB连接断开时程序不终止？**
+**Q4: Does the program fail to stop when USB disconnects?**
 
-程序已添加异常处理，当PiPER Mate USB断开时会自动终止并显示错误信息：
+The program includes exception handling. If the PiPER Mate USB connection is lost, it terminates automatically and displays an error message:
 
 ```bash
-❌ 致命错误：PiPER Mate USB连接断开！
+❌ Fatal error: PiPER Mate USB connection lost!
 ```
 
 ---
 
-## 📖 详细文档
+## 📖 Detailed Documentation
 
-选择你需要的控制方式查看详细文档：
+Choose a control method to read its detailed documentation:
 
-- 📘 **[Python SDK 详细文档](./Python_SDK/README.md)** - 推荐！最简单易用
-- 📗 **[ROS2 HUMBLE 详细文档](./ROS2_HUMBLE/README.md)** - 适用于机器人系统集成
-- 📙 **[Lerobot 详细文档](./Lerobot/README.md)** - 适用于AI训练和研究
+- 📘 **[Python SDK Detailed Documentation](./Python_SDK/README.md)** - Recommended: the easiest way to get started
+- 📗 **[ROS2 HUMBLE Detailed Documentation](./ROS2_HUMBLE/README.md)** - Suitable for robotic system integration
+- 📙 **[Lerobot Detailed Documentation](./Lerobot/README.md)** - Suitable for AI training and research
 
-## 📄 许可证
+## 📄 License
 
-本项目基于 [MIT License](LICENSE) 开源。
-
----
-
-## 👥 作者与致谢
-
-- **项目维护者**：[Welt-liu](https://github.com/Welt-liu)
-- **感谢**：PiPER Mate 和 Piper 团队的硬件支持
+This project is open source under the [MIT License](LICENSE).
 
 ---
 
-## 🔗 相关链接
+## 👥 Authors and Acknowledgements
 
-- [PiPER Mate 官方仓库](https://github.com/servodevelop/piper-mate/tree/main)
-- [Piper ROS2 官方仓库](https://github.com/agilexrobotics/piper_ros/tree/humble/)
-- [Lerobot 框架](https://github.com/huggingface/lerobot)
+- **Project maintainer**: [Welt-liu](https://github.com/Welt-liu)
+- **Thanks** to the PiPER Mate and Piper teams for hardware support.
+
+---
+
+## 🔗 Related Links
+
+- [PiPER Mate official repository](https://github.com/servodevelop/piper-mate/tree/main)
+- [Piper ROS 2 official repository](https://github.com/agilexrobotics/piper_ros/tree/humble/)
+- [LeRobot framework](https://github.com/huggingface/lerobot)
 
 ---
