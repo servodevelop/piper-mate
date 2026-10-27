@@ -33,6 +33,8 @@
 
 The SolidWorks bundle keeps the original filenames so assembly references remain traceable. STEP is the portable starting point; the bundle has not been verified as a complete Pack and Go export. The two print projects use different revisions of the UC-01 enclosure, so do not mix them without a fit check.
 
+The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified.
+
 <a id="specifications"></a>
 
 ## Specifications
