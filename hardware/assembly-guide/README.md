@@ -13,7 +13,7 @@
 
 ## 📂 Select matching files
 
-Use the [hardware resource table](../README.md#resources) to choose CAD and print files. Open the complete STEP assembly first, then compare the individual parts and UC-01 enclosure. The two print profiles differ; neither has a new physical validation report.
+Use the [hardware resource table](../README.md#resources) to choose CAD and print files. Open the complete STEP assembly first, then compare the individual parts and UC-01 enclosure. Both print projects share the same stored profile; neither has a new physical validation report.
 
 <a id="print"></a>
 

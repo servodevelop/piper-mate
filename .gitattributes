@@ -1,7 +1,10 @@
 *.step binary
 *.STEP binary
+*.stl binary
 *.3mf binary
 *.dwg binary
 *.pdf binary
 *.zip binary
 *.png binary
+*.webp binary
+*.xlsx binary

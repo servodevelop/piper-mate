@@ -29,11 +29,12 @@
 | [stl/](stl/) | [Download all STL files (12 parts)](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [Browse individual STL files](stl/) | ✅ Complete |
 | [drawings/](drawings/) | Dimension drawing in PDF and DWG | ✅ Complete |
 | [cad-source/](cad-source/) | Editable SolidWorks source bundle (20 native files) | 📎 Reference |
-| [printing/3mf/](printing/3mf/) | Two Bambu Studio print projects kept for reference | 📎 Reference |
+| [bom/](bom/) | Spreadsheet BOM source (installed items and kit accessories) | 📎 Reference |
+| [printing/3mf/](printing/3mf/) | Two Bambu Studio print projects: 9.1 full set and handle multi-part | 📎 Reference |
 
 The SolidWorks bundle keeps the original filenames so assembly references remain traceable. STEP is the portable starting point; the bundle has not been verified as a complete Pack and Go export. The two print projects use different revisions of the UC-01 enclosure, so do not mix them without a fit check.
 
-The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified.
+The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and 11 of the 12 part files match the supplied 2026-10-27 release folder byte-for-byte; uc01-cover.step is retained from the previous export because the release folder provides only its SolidWorks source.
 
 <a id="specifications"></a>
 
@@ -66,7 +67,7 @@ Sources: [Python mapping](../Python_SDK/piper_pipermate.py) and [LeRobot mapping
 
 ## Bill of Materials
 
-The table lists **19 installed items** from the assembly BOM. Servos come first. Printed-part names match the STEP and STL filenames; the description column keeps the original BOM identifier.
+The BOM has **19 installed items** and **10 kit accessories / packaging items**. The first table covers the installed items from the assembly BOM; servos are listed first, and printed-part names match the STEP and STL filenames. The description column keeps the original BOM identifier. The source workbook is [piper-mate-bom-2026-07-21.xlsx](bom/piper-mate-bom-2026-07-21.xlsx).
 
 Print settings are not recorded here: take the STL from [stl/](stl/) and slice it for your own printer, because layer height, wall count and infill depend on the machine and filament used.
 
@@ -94,18 +95,35 @@ Print settings are not recorded here: take the STL from [stl/](stl/) and slice i
 
 The UC-01 cover, front case and mount are available in [step/parts/](step/parts/) and [stl/](stl/), but this BOM does not assign them a separate quantity. Confirm their fit and required quantities for your configuration. The complete assembly model is not an additional BOM item.
 
-Useful accessories listed separately in the source include low-strength purple 222 threadlocker, a 1 m USB-A to USB-C cable and two 4-inch F-clamps. Packaging, spare screws and cables, and the separately listed bare UC-01 are not added to the installed quantities above. Confirm the actual kit contents with your order.
+### Kit accessories
+
+These items are packed with the kit but are not installed on the arm. Confirm the actual kit contents with your order.
+
+| No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
+| :---: | --- | --- | :---: | --- | :---: |
+| 20 | White box | 160 × 125 × 60 mm | Pending | Small white packaging box | 1 |
+| 21 | Sealing bag | 120 × 80 mm | Pending | Holds the threadlocker; label reads “Threadlocker 1pcs / 螺丝胶” | 1 |
+| 22 | Threadlocker | Purple 222, low strength | Pending | — | 1 |
+| 23 | Spare power cable | XT30, male, 10 cm | Pending | — | 1 |
+| 24 | USB cable | USB-A to USB-C, 1 m, black, 1 A | Pending | — | 1 |
+| 25 | F-clamp | 4-inch F-clamp | Pending | — | 2 |
+| 26 | UC-01 (bare board) | UC-01 without power cable | Pending | — | 1 |
+| 27 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends; spare | 1 |
+| 28 | Phillips screw | M1.6 × 4 mm, class 12.9 | Pending | Bag labeled “Phillips Screw M1.6*4, 5pcs” | 5 |
+| 29 | Phillips screw | M1.6 × 4 mm | Pending | Bag labeled “Phillips Screw M1.6*4, 8pcs” | 8 |
 
 <a id="printing"></a>
 
 ## Printing
 
-Two Bambu Studio projects are retained for reference. The values below are read from project metadata and are **not** a print recommendation; review plate contents, per-object overrides, supports and orientation in the slicer.
+Two Bambu Studio projects from the latest release folder are retained for reference. The values below are read from project metadata and are **not** a print recommendation; review plate contents, per-object overrides, supports and orientation in the slicer.
 
 | Project | Printer / material | Stored global settings | Status |
 | --- | --- | --- | --- |
-| [piper-mate.3mf](printing/3mf/piper-mate.3mf) | Bambu Lab P1S, 0.4 mm nozzle, PLA | 0.2 mm layers; 30% infill; 5 walls | Existing repository print profile |
-| [piper-mate-09-01.3mf](printing/3mf/piper-mate-09-01.3mf) | Bambu Lab P1S, 0.4 mm nozzle, PLA | 0.2 mm layers; 15% infill; 4 walls | Source marked “9.1 update”; fit and strength not verified |
+| [piper-mate-09-01.3mf](printing/3mf/piper-mate-09-01.3mf) | Bambu Lab P1S, 0.4 mm nozzle, PLA | 0.2 mm layers; 15% infill; 4 walls | Full project, 11 objects; source marked “9.1 update”; fit and strength not verified |
+| [piper-mate-handle.3mf](printing/3mf/piper-mate-handle.3mf) | Bambu Lab P1S, 0.4 mm nozzle, PLA | 0.2 mm layers; 15% infill; 4 walls | Multi-part project, 10 objects including three handle instances; not a handle-only project |
+
+The 9.1 project uses the UC-01 front case; the handle project uses the UC-01 cover and contains three handle instances. Do not mix enclosure revisions without a fit check.
 
 The portable print entry is [stl/](stl/): 12 individual binary STL files plus a ZIP containing the same 12 files. Every loose STL is byte-identical to its ZIP entry. The UC-01 enclosure parts are included as separate models, so check the revision against the selected project before printing.
 
