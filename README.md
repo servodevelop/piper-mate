@@ -100,7 +100,7 @@ ros2 run piper piper_single_ctrl --ros-args -p can_port:=can0 -p auto_enable:=tr
 
 ## 📂 Project Structure
 
-```bash
+```text
 PiPER-Mate/
 ├── Python_SDK/                  # Python SDK control workflow
 │   ├── piper_pipermate.py       # Main control program
@@ -116,6 +116,7 @@ PiPER-Mate/
 │   └── piper-star_en.md         # LeRobot documentation (English)
 │   └── piper-star.md            # LeRobot documentation
 │   └── README.md                # Usage steps
+├── hardware/                    # Hardware resources and BOM
 ├── can_activate.sh              # CAN interface activation (repository root)
 ├── can_config.sh                # CAN interface configuration
 └── README.md                    # This document
@@ -226,6 +227,7 @@ Choose a control method to read its detailed documentation:
 - 📘 **[Python SDK Detailed Documentation](./Python_SDK/README.md)** - Recommended: the easiest way to get started
 - 📗 **[ROS2 HUMBLE Detailed Documentation](./ROS2_HUMBLE/README.md)** - Suitable for robotic system integration
 - 📙 **[Lerobot Detailed Documentation](./Lerobot/README.md)** - Suitable for AI training and research
+- ⚙️ **[Hardware Resources](./hardware/README.md)** - STEP, STL, drawings, BOM and specifications
 
 ## 📄 License
 
