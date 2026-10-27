@@ -23,13 +23,13 @@
 
 | Directory | Description | Status |
 | --- | --- | --- |
-| [step/](step/) | Complete assembly in assembly/; 12 part models in parts/ | ✅ Complete |
-| [stl/](stl/) | [Download all STL files (12 parts)](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [Browse individual STL files](stl/) | ✅ Complete |
+| [step/](step/) | Complete assembly in assembly/; 11 part models in parts/ | ✅ Complete |
+| [stl/](stl/) | [Download all STL files (11 parts)](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [Browse individual STL files](stl/) | ✅ Complete |
 | [drawings/](drawings/) | Dimension drawing in PDF and DWG | ✅ Complete |
 
-The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and 11 of the 12 part files match the supplied 2026-10-27 release folder byte-for-byte; uc01-cover.step is retained from the previous export because the release folder provides no newer STEP file.
+The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and all 11 part files match the supplied 2026-10-27 release folder byte-for-byte.
 
-The portable print entry is [stl/](stl/): 12 individual binary STL files plus a ZIP containing the same 12 files. Every loose STL is byte-identical to its ZIP entry.
+The portable print entry is [stl/](stl/): 11 individual binary STL files plus a ZIP containing the same 11 files. Every loose STL is byte-identical to its ZIP entry.
 
 <a id="specifications"></a>
 
@@ -62,7 +62,7 @@ Sources: [Python mapping](../Python_SDK/piper_pipermate.py) and [LeRobot mapping
 
 ## Bill of Materials
 
-The BOM has **19 installed items** and **10 kit accessories / packaging items**. The first table covers the installed items from the assembly BOM; servos are listed first, and printed-part names match the STEP and STL filenames. The description column keeps the original BOM identifier.
+The table lists **29 items**: rows 1–19 are installed items, rows 20–29 are kit accessories / packaging. Servos are listed first, and printed-part names match the STEP and STL filenames. The description column keeps the original BOM identifier.
 
 Print settings are not recorded here: take the STL from [stl/](stl/) and slice it for your own printer, because layer height, wall count and infill depend on the machine and filament used.
 
@@ -87,15 +87,6 @@ Print settings are not recorded here: take the STL from [stl/](stl/) and slice i
 | 17 | Phillips countersunk head machine screw | M3 × 10 | Pending | Black finish | 1 |
 | 18 | Locknut | M3 | Pending | Black finish | 1 |
 | 19 | TTL/USB servo adapter | UC-01 | Pending | PCBA with DC5521 female power lead; 0.75 mm² lead, 150 mm long | 1 |
-
-The UC-01 cover, front case and mount are available in [step/parts/](step/parts/) and [stl/](stl/), but this BOM does not assign them a separate quantity. Confirm their fit and required quantities for your configuration. The complete assembly model is not an additional BOM item.
-
-### Kit accessories
-
-These items are packed with the kit but are not installed on the arm. Confirm the actual kit contents with your order.
-
-| No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
-| :---: | --- | --- | :---: | --- | :---: |
 | 20 | White box | 160 × 125 × 60 mm | Pending | Small white packaging box | 1 |
 | 21 | Sealing bag | 120 × 80 mm | Pending | Holds the threadlocker; label reads “Threadlocker 1pcs / 螺丝胶” | 1 |
 | 22 | Threadlocker | Purple 222, low strength | Pending | — | 1 |
@@ -106,6 +97,10 @@ These items are packed with the kit but are not installed on the arm. Confirm th
 | 27 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends; spare | 1 |
 | 28 | Phillips screw | M1.6 × 4 mm, class 12.9 | Pending | Bag labeled “Phillips Screw M1.6*4, 5pcs” | 5 |
 | 29 | Phillips screw | M1.6 × 4 mm | Pending | Bag labeled “Phillips Screw M1.6*4, 8pcs” | 8 |
+
+The UC-01 front case and mount are available in [step/parts/](step/parts/) and [stl/](stl/), but this BOM does not assign them a separate quantity. Confirm their fit and required quantities for your configuration. The complete assembly model is not an additional BOM item.
+
+Rows 20–29 are packed with the kit but are not installed on the arm. Confirm the actual kit contents with your order.
 
 <a id="dimensions"></a>
 
