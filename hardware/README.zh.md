@@ -66,9 +66,11 @@ BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配
 
 这里不记录打印参数：请从 [stl/](stl/) 取模型，按自己的打印机切片，因为层高、壁数和填充取决于机器与耗材。
 
+紧固件图片为示意，部分展示的是同头型的其他长度或螺纹；采购时以规格列为准。
+
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
-| 1 | UART 总线舵机 | RP6-U15H-M | 待补 | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入 | 7 |
+| 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入 | 7 |
 | 2 | 底座 | [base](step/parts/base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
 | 3 | 连杆 1 | [link1](step/parts/link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
 | 4 | 连杆 2 | [link2](step/parts/link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
@@ -82,11 +84,11 @@ BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配
 | 12 | 舵机连接线 | A2007H03 × 2<br>140 mm | 待补 | 两端接头方向相反 | 1 |
 | 13 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反 | 1 |
 | 14 | 转接线 | A2007H03 转 PH2.0<br>100 mm | 待补 | 两端接头方向相同 | 1 |
-| 15 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | 待补 | 黑色；12.9 级 | 8 |
-| 16 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | 待补 | 黑色 | 54 |
+| 15 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="内六角圆柱头螺钉" width="90"></a> | 黑色；12.9 级 | 8 |
+| 16 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="十字槽盘头螺钉" width="90"></a> | 黑色 | 54 |
 | 17 | 十字槽沉头螺钉 | M3 × 10 | 待补 | 黑色 | 1 |
-| 18 | 防松螺母 | M3 | 待补 | 黑色 | 1 |
-| 19 | TTL／USB 舵机适配器 | UC-01 | 待补 | PCBA，带 DC5521 母头电源线；线径 0.75 mm²，长 150 mm | 1 |
+| 18 | 防松螺母 | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 防松螺母" width="90"></a> | 黑色 | 1 |
+| 19 | TTL／USB 舵机适配器 | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA，带 DC5521 母头电源线；线径 0.75 mm²，长 150 mm | 1 |
 | 20 | 白盒 | 160 × 125 × 60 mm | 待补 | 小白盒包装 | 1 |
 | 21 | 密封袋 | 120 × 80 mm | 待补 | 装螺丝胶；标签写“Threadlocker 1pcs／螺丝胶” | 1 |
 | 22 | 螺丝胶 | 紫色 222 低强度 | 待补 | — | 1 |

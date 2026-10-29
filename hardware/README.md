@@ -66,9 +66,11 @@ The table lists **29 items**: rows 1–19 are installed items, rows 20–29 are 
 
 Print settings are not recorded here: take the STL from [stl/](stl/) and slice it for your own printer, because layer height, wall count and infill depend on the machine and filament used.
 
+Fastener images are illustrative; some show a different length or thread of the same head type. Use the specification column for purchasing.
+
 | No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
 | :---: | --- | --- | :---: | --- | :---: |
-| 1 | UART bus servo | RP6-U15H-M | Pending | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger | 7 |
+| 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger | 7 |
 | 2 | Base | [base](step/parts/base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
 | 3 | Link 1 | [link1](step/parts/link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
 | 4 | Link 2 | [link2](step/parts/link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
@@ -82,11 +84,11 @@ Print settings are not recorded here: take the STL from [stl/](stl/) and slice i
 | 12 | Servo cable | A2007H03 × 2<br>140 mm | Pending | Reversed connector orientation between ends | 1 |
 | 13 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends | 1 |
 | 14 | Adapter cable | A2007H03 to PH2.0<br>100 mm | Pending | Same connector orientation at both ends | 1 |
-| 15 | Hexagon socket head cap screw | PM M1.6 × 4 mm | Pending | Black finish, property class 12.9 | 8 |
-| 16 | Phillips pan head machine screw | PM M1.6 × 4 mm | Pending | Black finish | 54 |
+| 15 | Hexagon socket head cap screw | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="Hexagon socket head cap screw" width="90"></a> | Black finish, property class 12.9 | 8 |
+| 16 | Phillips pan head machine screw | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="Phillips pan head machine screw" width="90"></a> | Black finish | 54 |
 | 17 | Phillips countersunk head machine screw | M3 × 10 | Pending | Black finish | 1 |
-| 18 | Locknut | M3 | Pending | Black finish | 1 |
-| 19 | TTL/USB servo adapter | UC-01 | Pending | PCBA with DC5521 female power lead; 0.75 mm² lead, 150 mm long | 1 |
+| 18 | Locknut | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 locknut" width="90"></a> | Black finish | 1 |
+| 19 | TTL/USB servo adapter | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA with DC5521 female power lead; 0.75 mm² lead, 150 mm long | 1 |
 | 20 | White box | 160 × 125 × 60 mm | Pending | Small white packaging box | 1 |
 | 21 | Sealing bag | 120 × 80 mm | Pending | Holds the threadlocker; label reads “Threadlocker 1pcs / 螺丝胶” | 1 |
 | 22 | Threadlocker | Purple 222, low strength | Pending | — | 1 |
