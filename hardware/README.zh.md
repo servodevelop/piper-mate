@@ -29,7 +29,7 @@
 
 整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件基于 2026-10-27 发布文件夹；几何未改，仅将 PRODUCT 名称统一为下列标识。
 
-装配设计树名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`；对应零件文件为 `piper-mate-c050-base`、`piper-mate-link1`–`5`、`piper-mate-c050-handle`，指环文件同名。
+装配设计树名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
 
 便携的打印入口是 [stl/](stl/)：11 个独立二进制 STL，外加一个包含同样 11 个文件的压缩包；每个散件与包内条目逐字节一致。
 
@@ -64,7 +64,7 @@
 
 ## 物料清单
 
-BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配件／包装。舵机置于首行；打印零件标识与 STEP、STL 文件名一致，描述列保留原 BOM 标识。
+BOM 共 **31 项**：第 1–21 项为装机物料，第 22–31 项为随箱配件／包装。舵机置于首行；打印零件标识与 STEP、STL 文件名一致，描述列保留原 BOM 标识。
 
 这里不记录打印参数：请从 [stl/](stl/) 取模型，按自己的打印机切片，因为层高、壁数和填充取决于机器与耗材。
 
@@ -73,38 +73,40 @@ BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入 | 7 |
-| 2 | piper-mate-base | [piper-mate-c050-base](step/parts/piper-mate-c050-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
+| 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
 | 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
 | 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
 | 5 | piper-mate-link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
 | 6 | piper-mate-link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
 | 7 | piper-mate-link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
-| 8 | piper-mate-handle | [piper-mate-c050-handle](step/parts/piper-mate-c050-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
+| 8 | piper-mate-handle | [piper-mate-handle](step/parts/piper-mate-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
 | 9 | piper-mate-finger-ring-right | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
 | 10 | piper-mate-finger-ring-left | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
-| 11 | 舵机连接线 | A2007H03 × 2<br>100 mm | 待补 | 两端接头方向相反 | 4 |
-| 12 | 舵机连接线 | A2007H03 × 2<br>140 mm | 待补 | 两端接头方向相反 | 1 |
-| 13 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反 | 1 |
-| 14 | 转接线 | A2007H03 转 PH2.0<br>100 mm | 待补 | 两端接头方向相同 | 1 |
-| 15 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="内六角圆柱头螺钉" width="90"></a> | 黑色；12.9 级 | 8 |
-| 16 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="十字槽盘头螺钉" width="90"></a> | 黑色 | 54 |
-| 17 | 十字槽沉头螺钉 | M3 × 10 | 待补 | 黑色 | 1 |
-| 18 | 防松螺母 | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 防松螺母" width="90"></a> | 黑色 | 1 |
-| 19 | TTL／USB 舵机适配器 | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA，带 DC5521 母头电源线；线径 0.75 mm²，长 150 mm | 1 |
-| 20 | 白盒 | 160 × 125 × 60 mm | 待补 | 小白盒包装 | 1 |
-| 21 | 密封袋 | 120 × 80 mm | 待补 | 装螺丝胶；标签写“Threadlocker 1pcs／螺丝胶” | 1 |
-| 22 | 螺丝胶 | 紫色 222 低强度 | 待补 | — | 1 |
-| 23 | 备用电源线 | XT30 公头，10 cm | 待补 | — | 1 |
-| 24 | 数据线 | USB-A 转 USB-C，1 m，黑色，1 A | 待补 | — | 1 |
-| 25 | 木工夹 | 4 寸 F 夹 | 待补 | — | 2 |
-| 26 | UC-01 裸板 | UC-01，不配电源线 | 待补 | — | 1 |
-| 27 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反；备用 | 1 |
-| 28 | 十字槽螺丝 | M1.6 × 4 mm，12.9 级 | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 5pcs” | 5 |
-| 29 | 十字槽螺丝 | M1.6 × 4 mm | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 8pcs” | 8 |
+| 11 | piper-mate-uc01-front-case | [piper-mate-uc01-front-case](step/parts/piper-mate-uc01-front-case.step) | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 前壳" width="90"></a> | 米白色 PLA 打印件；UC-01 外壳前壳 | 1 |
+| 12 | piper-mate-uc01-mount | [piper-mate-uc01-mount](step/parts/piper-mate-uc01-mount.step) | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 安装板" width="90"></a> | 米白色 PLA 打印件；UC-01 安装板 | 1 |
+| 13 | 舵机连接线 | A2007H03 × 2<br>100 mm | 待补 | 两端接头方向相反 | 4 |
+| 14 | 舵机连接线 | A2007H03 × 2<br>140 mm | 待补 | 两端接头方向相反 | 1 |
+| 15 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反 | 1 |
+| 16 | 转接线 | A2007H03 转 PH2.0<br>100 mm | 待补 | 两端接头方向相同 | 1 |
+| 17 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="内六角圆柱头螺钉" width="90"></a> | 黑色；12.9 级 | 8 |
+| 18 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="十字槽盘头螺钉" width="90"></a> | 黑色 | 54 |
+| 19 | 十字槽沉头螺钉 | M3 × 10 | 待补 | 黑色 | 1 |
+| 20 | 防松螺母 | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 防松螺母" width="90"></a> | 黑色 | 1 |
+| 21 | TTL／USB 舵机适配器 | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA，带 DC5521 母头电源线；线径 0.75 mm²，长 150 mm | 1 |
+| 22 | 白盒 | 160 × 125 × 60 mm | 待补 | 小白盒包装 | 1 |
+| 23 | 密封袋 | 120 × 80 mm | 待补 | 装螺丝胶；标签写“Threadlocker 1pcs／螺丝胶” | 1 |
+| 24 | 螺丝胶 | 紫色 222 低强度 | 待补 | — | 1 |
+| 25 | 备用电源线 | XT30 公头，10 cm | 待补 | — | 1 |
+| 26 | 数据线 | USB-A 转 USB-C，1 m，黑色，1 A | 待补 | — | 1 |
+| 27 | 木工夹 | 4 寸 F 夹 | 待补 | — | 2 |
+| 28 | UC-01 裸板 | UC-01，不配电源线 | 待补 | — | 1 |
+| 29 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反；备用 | 1 |
+| 30 | 十字槽螺丝 | M1.6 × 4 mm，12.9 级 | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 5pcs” | 5 |
+| 31 | 十字槽螺丝 | M1.6 × 4 mm | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 8pcs” | 8 |
 
-UC-01 前壳和安装板可在 [step/parts/](step/parts/) 与 [stl/](stl/) 下载，但本 BOM 没有为它们单列数量。请按实际配置确认适配关系和用量。整机装配模型不额外计作一个物料。
+UC-01 前壳和安装板列在第 11–12 项，STEP 与 STL 文件分别在 [step/parts/](step/parts/) 和 [stl/](stl/)。请按实际配置确认适配关系。整机装配模型不额外计作一个物料。
 
-第 20–29 项随套件包装，但不安装在机械臂上。实际套件内容请以订单为准。
+第 22–31 项随套件包装，但不安装在机械臂上。实际套件内容请以订单为准。
 
 <a id="dimensions"></a>
 
