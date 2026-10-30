@@ -23,13 +23,15 @@
 
 | 目录 | 说明 | 状态 |
 | --- | --- | --- |
-| [step/](step/) | assembly/ 为整机装配；parts/ 为 11 个零件模型 | ✅ 完整 |
+| [step/](step/) | assembly/ 为整机装配（`piper-mate.step`、`piper-mate-c050.step`）；parts/ 为 11 个零件模型 | ✅ 完整 |
 | [stl/](stl/) | [下载全部 STL（11 个零件）](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [浏览单个 STL](stl/) | ✅ 完整 |
 | [drawings/](drawings/) | PDF 与 DWG 尺寸图 | ✅ 完整 |
 
 整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件基于 2026-10-27 发布文件夹；几何未改，仅将 PRODUCT 名称统一为下列标识。
 
 装配设计树把打印件归入 `3D Printed Parts (11)`，七个舵机归入 `Servos (7)`；舵机名称为 `J1-ID0-RP6-U15H-M` 至 `J7-ID6-RP6-U15H-M (Handle)`。打印件名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`，UC-01 前壳与安装板也在此组；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
+
+C050 变体见 [assembly/piper-mate-c050.step](step/assembly/piper-mate-c050.step)。它沿用 102 风格分组：`3D Printed Parts (11)`、`Servos (7)`、`Servo Horns (11)`；打印件使用 `piper-mate-c050-` 前缀，七个舵机带 `J1`–`J7` 实例名。下方 BOM 仍按标准装配维护。
 
 便携的打印入口是 [stl/](stl/)：11 个独立二进制 STL，外加一个包含同样 11 个文件的压缩包；每个散件与包内条目逐字节一致。
 
