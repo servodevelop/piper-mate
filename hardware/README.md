@@ -73,7 +73,7 @@ Fastener images are illustrative; some show a different length or thread of the 
 
 | No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
 | :---: | --- | --- | :---: | --- | :---: |
-| 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger; J1–J7 | 7 |
+| 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger; J1-ID0–J7-ID6 | 7 |
 | 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
 | 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
 | 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
