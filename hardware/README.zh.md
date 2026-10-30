@@ -27,7 +27,9 @@
 | [stl/](stl/) | [下载全部 STL（11 个零件）](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [浏览单个 STL](stl/) | ✅ 完整 |
 | [drawings/](drawings/) | PDF 与 DWG 尺寸图 | ✅ 完整 |
 
-整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件均与 2026-10-27 发布文件夹逐字节一致。
+整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件基于 2026-10-27 发布文件夹；几何未改，仅将 PRODUCT 名称统一为下列标识。
+
+装配设计树名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`；对应零件文件为 `piper-mate-c050-base`、`piper-mate-link1`–`5`、`piper-mate-c050-handle`，指环文件同名。
 
 便携的打印入口是 [stl/](stl/)：11 个独立二进制 STL，外加一个包含同样 11 个文件的压缩包；每个散件与包内条目逐字节一致。
 
@@ -62,7 +64,7 @@
 
 ## 物料清单
 
-BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配件／包装。舵机置于首行；打印零件名称与 STEP、STL 文件名一致，描述列保留原 BOM 标识。
+BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配件／包装。舵机置于首行；打印零件标识与 STEP、STL 文件名一致，描述列保留原 BOM 标识。
 
 这里不记录打印参数：请从 [stl/](stl/) 取模型，按自己的打印机切片，因为层高、壁数和填充取决于机器与耗材。
 
@@ -71,15 +73,15 @@ BOM 共 **29 项**：第 1–19 项为装机物料，第 20–29 项为随箱配
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入 | 7 |
-| 2 | 底座 | [base](step/parts/base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
-| 3 | 连杆 1 | [link1](step/parts/link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
-| 4 | 连杆 2 | [link2](step/parts/link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
-| 5 | 连杆 3 | [link3](step/parts/link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
-| 6 | 连杆 4 | [link4](step/parts/link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
-| 7 | 连杆 5 | [link5](step/parts/link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
-| 8 | 手柄／扳机 | [trigger](step/parts/trigger.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="trigger" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
-| 9 | 指环 1 | [finger-ring-1](step/parts/finger-ring-1.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="finger-ring-1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
-| 10 | 指环 2 | [finger-ring-2](step/parts/finger-ring-2.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="finger-ring-2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
+| 2 | piper-mate-base | [piper-mate-c050-base](step/parts/piper-mate-c050-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
+| 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
+| 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
+| 5 | piper-mate-link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
+| 6 | piper-mate-link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
+| 7 | piper-mate-link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
+| 8 | piper-mate-handle | [piper-mate-c050-handle](step/parts/piper-mate-c050-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
+| 9 | piper-mate-finger-ring-right | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
+| 10 | piper-mate-finger-ring-left | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
 | 11 | 舵机连接线 | A2007H03 × 2<br>100 mm | 待补 | 两端接头方向相反 | 4 |
 | 12 | 舵机连接线 | A2007H03 × 2<br>140 mm | 待补 | 两端接头方向相反 | 1 |
 | 13 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反 | 1 |

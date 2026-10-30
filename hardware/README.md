@@ -27,7 +27,9 @@
 | [stl/](stl/) | [Download all STL files (11 parts)](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [Browse individual STL files](stl/) | ✅ Complete |
 | [drawings/](drawings/) | Dimension drawing in PDF and DWG | ✅ Complete |
 
-The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and all 11 part files match the supplied 2026-10-27 release folder byte-for-byte.
+The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and all 11 part files are based on the supplied 2026-10-27 release folder. Geometry is unchanged; only the PRODUCT names were normalized to the identifiers below.
+
+The assembly tree labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The corresponding part files are `piper-mate-c050-base`, `piper-mate-link1`–`5`, `piper-mate-c050-handle`, and the same finger-ring identifiers.
 
 The portable print entry is [stl/](stl/): 11 individual binary STL files plus a ZIP containing the same 11 files. Every loose STL is byte-identical to its ZIP entry.
 
@@ -62,7 +64,7 @@ Sources: [Python mapping](../Python_SDK/piper_pipermate.py) and [LeRobot mapping
 
 ## Bill of Materials
 
-The table lists **29 items**: rows 1–19 are installed items, rows 20–29 are kit accessories / packaging. Servos are listed first, and printed-part names match the STEP and STL filenames. The description column keeps the original BOM identifier.
+The table lists **29 items**: rows 1–19 are installed items, rows 20–29 are kit accessories / packaging. Servos are listed first, and printed-part identifiers match the STEP and STL filenames. The description column keeps the original BOM identifier.
 
 Print settings are not recorded here: take the STL from [stl/](stl/) and slice it for your own printer, because layer height, wall count and infill depend on the machine and filament used.
 
@@ -71,15 +73,15 @@ Fastener images are illustrative; some show a different length or thread of the 
 | No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger | 7 |
-| 2 | Base | [base](step/parts/base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
-| 3 | Link 1 | [link1](step/parts/link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
-| 4 | Link 2 | [link2](step/parts/link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
-| 5 | Link 3 | [link3](step/parts/link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID3` | 1 |
-| 6 | Link 4 | [link4](step/parts/link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID4` | 1 |
-| 7 | Link 5 | [link5](step/parts/link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID5` | 1 |
-| 8 | Handle / trigger | [trigger](step/parts/trigger.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="trigger" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-0` | 1 |
-| 9 | Finger ring 1 | [finger-ring-1](step/parts/finger-ring-1.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="finger-ring-1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-1` | 1 |
-| 10 | Finger ring 2 | [finger-ring-2](step/parts/finger-ring-2.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="finger-ring-2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-2` | 1 |
+| 2 | piper-mate-base | [piper-mate-c050-base](step/parts/piper-mate-c050-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
+| 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
+| 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
+| 5 | piper-mate-link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID3` | 1 |
+| 6 | piper-mate-link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID4` | 1 |
+| 7 | piper-mate-link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID5` | 1 |
+| 8 | piper-mate-handle | [piper-mate-c050-handle](step/parts/piper-mate-c050-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-0` | 1 |
+| 9 | piper-mate-finger-ring-right | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-1` | 1 |
+| 10 | piper-mate-finger-ring-left | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-2` | 1 |
 | 11 | Servo cable | A2007H03 × 2<br>100 mm | Pending | Reversed connector orientation between ends | 4 |
 | 12 | Servo cable | A2007H03 × 2<br>140 mm | Pending | Reversed connector orientation between ends | 1 |
 | 13 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends | 1 |
