@@ -29,7 +29,7 @@
 
 The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and all 11 part files are based on the supplied 2026-10-27 release folder. Geometry is unchanged; only the PRODUCT names were normalized to the identifiers below.
 
-The assembly tree labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The corresponding part files use the same identifiers, with the space dropped in `piper-mate-link1`–`5`.
+The assembly tree groups the printed parts under `3D Printed Parts (11)` and the seven servos under `Servos (7)`. Servo instances are labeled `J1-ID0-RP6-U15H-M` through `J7-ID6-RP6-U15H-M (Handle)`; printed-part labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The UC-01 front case and mount are also in this group. The corresponding part files use the same identifiers, with the space dropped in `piper-mate-link1`–`5`.
 
 The portable print entry is [stl/](stl/): 11 individual binary STL files plus a ZIP containing the same 11 files. Every loose STL is byte-identical to its ZIP entry.
 
@@ -72,7 +72,7 @@ Fastener images are illustrative; some show a different length or thread of the 
 
 | No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
 | :---: | --- | --- | :---: | --- | :---: |
-| 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger | 7 |
+| 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger; J1–J7 | 7 |
 | 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
 | 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
 | 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |

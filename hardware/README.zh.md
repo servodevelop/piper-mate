@@ -29,7 +29,7 @@
 
 整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件基于 2026-10-27 发布文件夹；几何未改，仅将 PRODUCT 名称统一为下列标识。
 
-装配设计树名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
+装配设计树把打印件归入 `3D Printed Parts (11)`，七个舵机归入 `Servos (7)`；舵机名称为 `J1-ID0-RP6-U15H-M` 至 `J7-ID6-RP6-U15H-M (Handle)`。打印件名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`，UC-01 前壳与安装板也在此组；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
 
 便携的打印入口是 [stl/](stl/)：11 个独立二进制 STL，外加一个包含同样 11 个文件的压缩包；每个散件与包内条目逐字节一致。
 
@@ -72,7 +72,7 @@ BOM 共 **31 项**：第 1–21 项为装机物料，第 22–31 项为随箱配
 
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
-| 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入 | 7 |
+| 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入；J1–J7 | 7 |
 | 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
 | 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
 | 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
