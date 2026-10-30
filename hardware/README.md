@@ -23,7 +23,7 @@
 
 | Directory | Description | Status |
 | --- | --- | --- |
-| [step/](step/) | Complete assemblies in assembly/ (`piper-mate.step`, `piper-mate-c050.step`); 11 part models in parts/ | ✅ Complete |
+| [step/](step/) | Complete assembly in assembly/; 11 part models in parts/ | ✅ Complete |
 | [stl/](stl/) | [Download all STL files (11 parts)](stl/downloads/piper-mate-stl-2026-10-27.zip?raw=true) · [Browse individual STL files](stl/) | ✅ Complete |
 | [drawings/](drawings/) | Dimension drawing in PDF and DWG | ✅ Complete |
 
@@ -31,7 +31,6 @@ The assembly model is a neutral CAD reference; its revision alignment with the i
 
 The assembly tree groups the printed parts under `3D Printed Parts (11)` and the seven servos under `Servos (7)`. Servo instances are labeled `J1-ID0-RP6-U15H-M` through `J7-ID6-RP6-U15H-M (Handle)`; printed-part labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The UC-01 front case and mount are also in this group. The corresponding part files use the same identifiers, with the space dropped in `piper-mate-link1`–`5`.
 
-The C050 variant is [assembly/piper-mate-c050.step](step/assembly/piper-mate-c050.step). It uses the same 102-style grouping: `3D Printed Parts (11)`, `Servos (7)`, and `Servo Horns (11)`; printed parts use the `piper-mate-c050-` prefix, and the seven servos carry occurrence names `J1`–`J7`. The BOM below still describes the standard assembly.
 
 The portable print entry is [stl/](stl/): 11 individual binary STL files plus a ZIP containing the same 11 files. Every loose STL is byte-identical to its ZIP entry.
 
