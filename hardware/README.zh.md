@@ -29,7 +29,7 @@
 
 整机装配模型为通用 CAD 参考；它与各零件文件的版本对应关系尚未完全验证。装配 STEP 与全部 11 份零件文件基于 2026-10-27 发布文件夹；几何未改，仅将 PRODUCT 名称统一为下列标识。
 
-装配设计树把打印件归入 `3D Printed Parts (11)`，七个舵机归入 `Servos (7)`；舵机名称为 `J1-ID0-RP6-U15H-M` 至 `J7-ID6-RP6-U15H-M (Handle)`。打印件名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`，UC-01 前壳与安装板也在此组；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
+装配设计树把打印件归入 `3D Printed Parts (11)`，七个舵机归入 `Servos (7)`；舵机名称为 `J1-ID0-RP6-U15H-M` 至 `J7-ID6-RP6-U15H-M (Handle)`。打印件名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`，UC-01 转接板盖板与底座也在此组；对应零件文件使用同名标识，`piper-mate-link 1`–`5` 在文件名中去掉空格，写作 `piper-mate-link1`–`5`。
 
 
 便携的打印入口是 [stl/](stl/)：11 个独立二进制 STL，外加一个包含同样 11 个文件的压缩包；每个散件与包内条目逐字节一致。
@@ -69,29 +69,31 @@ BOM 共 **31 项**：第 1–21 项为装机物料，第 22–31 项为随箱配
 
 这里不记录打印参数：请从 [stl/](stl/) 取模型，按自己的打印机切片，因为层高、壁数和填充取决于机器与耗材。
 
-紧固件图片为示意，部分展示的是同头型的其他长度或螺纹；采购时以规格列为准。
+第 17–19 项螺钉图片为 AI 生成示意图；第 17、18 项已按 M1.6 × 4 mm 调整外观比例，不作为带尺寸的加工图纸。采购时以规格列为准。
+
+第 13–16、29 项连接线图片为依据接头参考图制作的 AI 生成示意图，不按比例绘制，也不作为引脚接线依据；线长以规格列为准，接线请核对实际硬件。
 
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入；J1-ID0–J7-ID6 | 7 |
-| 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
-| 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
-| 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
-| 5 | piper-mate-link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
-| 6 | piper-mate-link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
-| 7 | piper-mate-link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
-| 8 | piper-mate-handle | [piper-mate-handle](step/parts/piper-mate-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
-| 9 | piper-mate-finger-ring-right | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
-| 10 | piper-mate-finger-ring-left | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
-| 11 | piper-mate-uc01-front-case | [piper-mate-uc01-front-case](step/parts/piper-mate-uc01-front-case.step) | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 前壳" width="90"></a> | 米白色 PLA 打印件；UC-01 外壳前壳 | 1 |
-| 12 | piper-mate-uc01-mount | [piper-mate-uc01-mount](step/parts/piper-mate-uc01-mount.step) | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 安装板" width="90"></a> | 米白色 PLA 打印件；UC-01 安装板 | 1 |
-| 13 | 舵机连接线 | A2007H03 × 2<br>100 mm | 待补 | 两端接头方向相反 | 4 |
-| 14 | 舵机连接线 | A2007H03 × 2<br>140 mm | 待补 | 两端接头方向相反 | 1 |
-| 15 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反 | 1 |
-| 16 | 转接线 | A2007H03 转 PH2.0<br>100 mm | 待补 | 两端接头方向相同 | 1 |
-| 17 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="内六角圆柱头螺钉" width="90"></a> | 黑色；12.9 级 | 8 |
-| 18 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="十字槽盘头螺钉" width="90"></a> | 黑色 | 54 |
-| 19 | 十字槽沉头螺钉 | M3 × 10 | 待补 | 黑色 | 1 |
+| 2 | 基座 | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
+| 3 | 连杆 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
+| 4 | 连杆 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
+| 5 | 连杆 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
+| 6 | 连杆 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
+| 7 | 连杆 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
+| 8 | 手柄 | [piper-mate-handle](step/parts/piper-mate-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
+| 9 | 右指环 | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
+| 10 | 左指环 | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
+| 11 | 转接板盖板 | [piper-mate-uc01-front-case](step/parts/piper-mate-uc01-front-case.step) | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 转接板盖板" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板盖板 | 1 |
+| 12 | 转接板底座 | [piper-mate-uc01-mount](step/parts/piper-mate-uc01-mount.step) | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 转接板底座" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板底座 | 1 |
+| 13 | 舵机连接线 | A2007H03 × 2<br>100 mm | <a href="images/cables/a2007h03-servo-cable-100mm.png"><img src="images/cables/a2007h03-servo-cable-100mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 4 |
+| 14 | 舵机连接线 | A2007H03 × 2<br>140 mm | <a href="images/cables/a2007h03-servo-cable-140mm.png"><img src="images/cables/a2007h03-servo-cable-140mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 1 |
+| 15 | 舵机连接线 | A2007H03 × 2<br>250 mm | <a href="images/cables/a2007h03-servo-cable-250mm.png"><img src="images/cables/a2007h03-servo-cable-250mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 1 |
+| 16 | 转接线 | A2007H03 转 PH2.0<br>100 mm | <a href="images/cables/a2007h03-ph2-0-adapter-cable-100mm.png"><img src="images/cables/a2007h03-ph2-0-adapter-cable-100mm.png" alt="转接线——AI 生成示意图" width="90"></a> | 两端接头方向相同 | 1 |
+| 17 | 内六角圆柱头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m1-6-4-socket-head-cap-screw.png"><img src="images/fasteners/m1-6-4-socket-head-cap-screw.png" alt="PM M1.6 × 4 mm 内六角圆柱头螺钉——AI 生成示意图" width="90"></a> | 黑色；12.9 级 | 8 |
+| 18 | 十字槽盘头螺钉 | PM M1.6 × 4 mm | <a href="images/fasteners/m1-6-4-phillips-pan-head-screw.png"><img src="images/fasteners/m1-6-4-phillips-pan-head-screw.png" alt="PM M1.6 × 4 mm 十字槽盘头螺钉——AI 生成示意图" width="90"></a> | 黑色 | 54 |
+| 19 | 十字槽沉头螺钉 | PM M3 × 10 mm | <a href="images/fasteners/m3-10-phillips-countersunk-head-screw.png"><img src="images/fasteners/m3-10-phillips-countersunk-head-screw.png" alt="黑色 M3 × 10 十字槽沉头螺钉——AI 生成示意图" width="90"></a> | 黑色；AI 生成示意图 | 1 |
 | 20 | 防松螺母 | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 防松螺母" width="90"></a> | 黑色 | 1 |
 | 21 | TTL／USB 舵机适配器 | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA，带 DC5521 母头电源线；线径 0.75 mm²，长 150 mm | 1 |
 | 22 | 白盒 | 160 × 125 × 60 mm | 待补 | 小白盒包装 | 1 |
@@ -101,11 +103,11 @@ BOM 共 **31 项**：第 1–21 项为装机物料，第 22–31 项为随箱配
 | 26 | 数据线 | USB-A 转 USB-C，1 m，黑色，1 A | 待补 | — | 1 |
 | 27 | 木工夹 | 4 寸 F 夹 | 待补 | — | 2 |
 | 28 | UC-01 裸板 | UC-01，不配电源线 | 待补 | — | 1 |
-| 29 | 舵机连接线 | A2007H03 × 2<br>250 mm | 待补 | 两端接头方向相反；备用 | 1 |
+| 29 | 舵机连接线 | A2007H03 × 2<br>250 mm | <a href="images/cables/a2007h03-servo-cable-250mm.png"><img src="images/cables/a2007h03-servo-cable-250mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反；备用 | 1 |
 | 30 | 十字槽螺丝 | M1.6 × 4 mm，12.9 级 | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 5pcs” | 5 |
 | 31 | 十字槽螺丝 | M1.6 × 4 mm | 待补 | 小密封袋标签“Phillips Screw M1.6*4, 8pcs” | 8 |
 
-UC-01 前壳和安装板列在第 11–12 项，STEP 与 STL 文件分别在 [step/parts/](step/parts/) 和 [stl/](stl/)。请按实际配置确认适配关系。整机装配模型不额外计作一个物料。
+UC-01 转接板盖板和底座列在第 11–12 项，STEP 与 STL 文件分别在 [step/parts/](step/parts/) 和 [stl/](stl/)。请按实际配置确认适配关系。整机装配模型不额外计作一个物料。
 
 第 22–31 项随套件包装，但不安装在机械臂上。实际套件内容请以订单为准。
 

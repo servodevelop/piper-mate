@@ -29,7 +29,7 @@
 
 The assembly model is a neutral CAD reference; its revision alignment with the individual part files has not been fully verified. The STEP assembly and all 11 part files are based on the supplied 2026-10-27 release folder. Geometry is unchanged; only the PRODUCT names were normalized to the identifiers below.
 
-The assembly tree groups the printed parts under `3D Printed Parts (11)` and the seven servos under `Servos (7)`. Servo instances are labeled `J1-ID0-RP6-U15H-M` through `J7-ID6-RP6-U15H-M (Handle)`; printed-part labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The UC-01 front case and mount are also in this group. The corresponding part files use the same identifiers, with the space dropped in `piper-mate-link1`–`5`.
+The assembly tree groups the printed parts under `3D Printed Parts (11)` and the seven servos under `Servos (7)`. Servo instances are labeled `J1-ID0-RP6-U15H-M` through `J7-ID6-RP6-U15H-M (Handle)`; printed-part labels are `piper-mate-base`, `piper-mate-link 1`–`5`, `piper-mate-handle`, and `piper-mate-finger-ring-right` / `left`. The UC-01 adapter board cover and base are also in this group. The corresponding part files use the same identifiers, with the space dropped in `piper-mate-link1`–`5`.
 
 
 The portable print entry is [stl/](stl/): 11 individual binary STL files plus a ZIP containing the same 11 files. Every loose STL is byte-identical to its ZIP entry.
@@ -69,29 +69,31 @@ The table lists **31 items**: rows 1–21 are installed items, rows 22–31 are 
 
 Print settings are not recorded here: take the STL from [stl/](stl/) and slice it for your own printer, because layer height, wall count and infill depend on the machine and filament used.
 
-Fastener images are illustrative; some show a different length or thread of the same head type. Use the specification column for purchasing.
+Screw images in rows 17–19 are AI-generated illustrations. The proportions in rows 17–18 have been adjusted for M1.6 × 4 mm; they are not dimensioned manufacturing drawings. Use the specification column for purchasing.
+
+Cable images in rows 13–16 and 29 are AI-generated illustrations based on the connector reference. They are not to scale and do not define pin assignments; use the specification column for cable lengths and verify wiring against the actual hardware.
 
 | No. | Part Name | Model / Specification / Part Identifier | Image | Description | Quantity |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART bus servo | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | Coreless motor; 12-bit absolute encoder; six arm joints plus trigger; J1-ID0–J7-ID6 | 7 |
-| 2 | piper-mate-base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
-| 3 | piper-mate-link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
-| 4 | piper-mate-link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
-| 5 | piper-mate-link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID3` | 1 |
-| 6 | piper-mate-link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID4` | 1 |
-| 7 | piper-mate-link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID5` | 1 |
-| 8 | piper-mate-handle | [piper-mate-handle](step/parts/piper-mate-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-0` | 1 |
-| 9 | piper-mate-finger-ring-right | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-1` | 1 |
-| 10 | piper-mate-finger-ring-left | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-2` | 1 |
-| 11 | piper-mate-uc01-front-case | [piper-mate-uc01-front-case](step/parts/piper-mate-uc01-front-case.step) | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 front case" width="90"></a> | Ivory, PLA 3D printed part; UC-01 enclosure front case | 1 |
-| 12 | piper-mate-uc01-mount | [piper-mate-uc01-mount](step/parts/piper-mate-uc01-mount.step) | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 mount" width="90"></a> | Ivory, PLA 3D printed part; UC-01 mounting plate | 1 |
-| 13 | Servo cable | A2007H03 × 2<br>100 mm | Pending | Reversed connector orientation between ends | 4 |
-| 14 | Servo cable | A2007H03 × 2<br>140 mm | Pending | Reversed connector orientation between ends | 1 |
-| 15 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends | 1 |
-| 16 | Adapter cable | A2007H03 to PH2.0<br>100 mm | Pending | Same connector orientation at both ends | 1 |
-| 17 | Hexagon socket head cap screw | PM M1.6 × 4 mm | <a href="images/fasteners/m2-8-socket-head-cap-screw.png"><img src="images/fasteners/m2-8-socket-head-cap-screw.png" alt="Hexagon socket head cap screw" width="90"></a> | Black finish, property class 12.9 | 8 |
-| 18 | Phillips pan head machine screw | PM M1.6 × 4 mm | <a href="images/fasteners/m2-4-5-phillips-pan-head-screw.png"><img src="images/fasteners/m2-4-5-phillips-pan-head-screw.png" alt="Phillips pan head machine screw" width="90"></a> | Black finish | 54 |
-| 19 | Phillips countersunk head machine screw | M3 × 10 | Pending | Black finish | 1 |
+| 2 | Base | [piper-mate-base](step/parts/piper-mate-base.step) | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID0` | 1 |
+| 3 | Link 1 | [piper-mate-link1](step/parts/piper-mate-link1.step) | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID1` | 1 |
+| 4 | Link 2 | [piper-mate-link2](step/parts/piper-mate-link2.step) | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID2` | 1 |
+| 5 | Link 3 | [piper-mate-link3](step/parts/piper-mate-link3.step) | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID3` | 1 |
+| 6 | Link 4 | [piper-mate-link4](step/parts/piper-mate-link4.step) | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID4` | 1 |
+| 7 | Link 5 | [piper-mate-link5](step/parts/piper-mate-link5.step) | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID5` | 1 |
+| 8 | Handle | [piper-mate-handle](step/parts/piper-mate-handle.step) | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-0` | 1 |
+| 9 | Right finger ring | [piper-mate-finger-ring-right](step/parts/piper-mate-finger-ring-right.step) | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-1` | 1 |
+| 10 | Left finger ring | [piper-mate-finger-ring-left](step/parts/piper-mate-finger-ring-left.step) | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | Ivory, PLA 3D printed part; BOM ID `Piper mate_ID6-2` | 1 |
+| 11 | Adapter board cover | [piper-mate-uc01-front-case](step/parts/piper-mate-uc01-front-case.step) | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 adapter board cover" width="90"></a> | Ivory, PLA 3D printed part; UC-01 adapter board cover | 1 |
+| 12 | Adapter board base | [piper-mate-uc01-mount](step/parts/piper-mate-uc01-mount.step) | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 adapter board base" width="90"></a> | Ivory, PLA 3D printed part; UC-01 adapter board base | 1 |
+| 13 | Servo cable | A2007H03 × 2<br>100 mm | <a href="images/cables/a2007h03-servo-cable-100mm.png"><img src="images/cables/a2007h03-servo-cable-100mm.png" alt="a2007h03 servo cable 100mm — AI-generated illustration" width="90"></a> | Reversed connector orientation between ends | 4 |
+| 14 | Servo cable | A2007H03 × 2<br>140 mm | <a href="images/cables/a2007h03-servo-cable-140mm.png"><img src="images/cables/a2007h03-servo-cable-140mm.png" alt="a2007h03 servo cable 140mm — AI-generated illustration" width="90"></a> | Reversed connector orientation between ends | 1 |
+| 15 | Servo cable | A2007H03 × 2<br>250 mm | <a href="images/cables/a2007h03-servo-cable-250mm.png"><img src="images/cables/a2007h03-servo-cable-250mm.png" alt="a2007h03 servo cable 250mm — AI-generated illustration" width="90"></a> | Reversed connector orientation between ends | 1 |
+| 16 | Adapter cable | A2007H03 to PH2.0<br>100 mm | <a href="images/cables/a2007h03-ph2-0-adapter-cable-100mm.png"><img src="images/cables/a2007h03-ph2-0-adapter-cable-100mm.png" alt="a2007h03 ph2 0 adapter cable 100mm — AI-generated illustration" width="90"></a> | Same connector orientation at both ends | 1 |
+| 17 | Hexagon socket head cap screw | PM M1.6 × 4 mm | <a href="images/fasteners/m1-6-4-socket-head-cap-screw.png"><img src="images/fasteners/m1-6-4-socket-head-cap-screw.png" alt="PM M1.6 × 4 mm hexagon socket head cap screw — AI-generated illustration" width="90"></a> | Black finish, property class 12.9 | 8 |
+| 18 | Phillips pan head machine screw | PM M1.6 × 4 mm | <a href="images/fasteners/m1-6-4-phillips-pan-head-screw.png"><img src="images/fasteners/m1-6-4-phillips-pan-head-screw.png" alt="PM M1.6 × 4 mm Phillips pan head machine screw — AI-generated illustration" width="90"></a> | Black finish | 54 |
+| 19 | Phillips countersunk head machine screw | PM M3 × 10 mm | <a href="images/fasteners/m3-10-phillips-countersunk-head-screw.png"><img src="images/fasteners/m3-10-phillips-countersunk-head-screw.png" alt="Black M3 × 10 Phillips countersunk head screw — AI-generated illustration" width="90"></a> | Black finish; AI-generated illustration | 1 |
 | 20 | Locknut | M3 | <a href="images/fasteners/m3-nut.png"><img src="images/fasteners/m3-nut.png" alt="M3 locknut" width="90"></a> | Black finish | 1 |
 | 21 | TTL/USB servo adapter | UC-01 | <a href="images/uc-01.webp"><img src="images/uc-01.webp" alt="UC-01" width="90"></a> | PCBA with DC5521 female power lead; 0.75 mm² lead, 150 mm long | 1 |
 | 22 | White box | 160 × 125 × 60 mm | Pending | Small white packaging box | 1 |
@@ -101,11 +103,11 @@ Fastener images are illustrative; some show a different length or thread of the 
 | 26 | USB cable | USB-A to USB-C, 1 m, black, 1 A | Pending | — | 1 |
 | 27 | F-clamp | 4-inch F-clamp | Pending | — | 2 |
 | 28 | UC-01 (bare board) | UC-01 without power cable | Pending | — | 1 |
-| 29 | Servo cable | A2007H03 × 2<br>250 mm | Pending | Reversed connector orientation between ends; spare | 1 |
+| 29 | Servo cable | A2007H03 × 2<br>250 mm | <a href="images/cables/a2007h03-servo-cable-250mm.png"><img src="images/cables/a2007h03-servo-cable-250mm.png" alt="a2007h03 servo cable 250mm — AI-generated illustration" width="90"></a> | Reversed connector orientation between ends; spare | 1 |
 | 30 | Phillips screw | M1.6 × 4 mm, class 12.9 | Pending | Bag labeled “Phillips Screw M1.6*4, 5pcs” | 5 |
 | 31 | Phillips screw | M1.6 × 4 mm | Pending | Bag labeled “Phillips Screw M1.6*4, 8pcs” | 8 |
 
-The UC-01 front case and mount are listed in rows 11–12. Their STEP and STL files are in [step/parts/](step/parts/) and [stl/](stl/). Confirm their fit for your configuration. The complete assembly model is not an additional BOM item.
+The UC-01 adapter board cover and base are listed in rows 11–12. Their STEP and STL files are in [step/parts/](step/parts/) and [stl/](stl/). Confirm their fit for your configuration. The complete assembly model is not an additional BOM item.
 
 Rows 22–31 are packed with the kit but are not installed on the arm. Confirm the actual kit contents with your order.
 
