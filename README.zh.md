@@ -236,7 +236,7 @@ ip link show can0
 - 📘 **[Python SDK 详细文档](./Python_SDK/README.md)** - 推荐！最简单易用
 - 📗 **[ROS2 HUMBLE 详细文档](./ROS2_HUMBLE/README.md)** - 适用于机器人系统集成
 - 📙 **[Lerobot 详细文档](./Lerobot/README.md)** - 适用于AI训练和研究
-- ⚙️ **[硬件资源](./hardware/README.zh.md)** - STEP、STL、图纸、物料清单与规格
+- ⚙️ **[硬件资源](./hardware/README.zh.md)** - STEP、3MF（待提供）、图纸、物料清单与规格
 
 ## 📄 许可证
 

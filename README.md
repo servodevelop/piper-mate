@@ -227,7 +227,7 @@ Choose a control method to read its detailed documentation:
 - 📘 **[Python SDK Detailed Documentation](./Python_SDK/README.md)** - Recommended: the easiest way to get started
 - 📗 **[ROS2 HUMBLE Detailed Documentation](./ROS2_HUMBLE/README.md)** - Suitable for robotic system integration
 - 📙 **[Lerobot Detailed Documentation](./Lerobot/README.md)** - Suitable for AI training and research
-- ⚙️ **[Hardware Resources](./hardware/README.md)** - STEP, STL, drawings, BOM and specifications
+- ⚙️ **[Hardware Resources](./hardware/README.md)** - STEP, 3MF (coming soon), drawings, BOM and specifications
 
 ## 📄 License
 
