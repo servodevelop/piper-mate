@@ -13,8 +13,8 @@
 **本页导航：**
 
 - [📂 下载资料](#resources)
-- [🔧 规格](#specifications)
 - [📋 物料清单](#bill-of-materials)
+- [🔢 关节与舵机 ID 对照](../docs/specifications.zh.md#joint-ids-and-names)
 
 <a id="resources"></a>
 
@@ -30,38 +30,11 @@
 
 装配设计树把打印件归入 `3D Printed Parts (11)`，七个舵机归入 `Servos (7)`；舵机名称为 `J1-ID0-RP6-U15H-M` 至 `J7-ID6-RP6-U15H-M (Handle)`。打印件名称为 `piper-mate-base`、`piper-mate-link 1`–`5`、`piper-mate-handle`、`piper-mate-finger-ring-right`／`left`，UC-01 转接板盖板与底座也在此组。
 
-<a id="specifications"></a>
-
-## 规格
-
-| 规格 | PiPER-Mate 主臂 |
-| --- | --- |
-| 臂展／自由度 | 400 mm／6 个手臂关节 + 1 个手柄输入 |
-| 关节舵机 | RP6-U15H-M × 7 |
-| 位置检测 | 12-bit 绝对值编码器 |
-| 通信 | UART 总线、UC-01 USB 接口；示例波特率 1,000,000 |
-| 电源 | 12 V、3 A、DC5521 |
-| 机械臂重量 | 500 g |
-| 从臂连接 | AgileX PiPER 经 USB 转 CAN 连接，1 Mbit/s |
-
-商品规格的关节编号从 0 开始，下表把它与软件从 1 开始的关节名称对应起来。机械行程与从臂指令限位用途不同。
-
-| 舵机 ID／关节 | 产品机械行程 | Python／LeRobot 从臂指令限幅 | 方向 |
-| --- | --- | --- | --- |
-| 0 / joint1 | −154° 至 +154° | −150° 至 +150° | 反向 |
-| 1 / joint2 | 0° 至 195° | 0° 至 180° | 正向 |
-| 2 / joint3 | −175° 至 0° | −170° 至 0° | 正向 |
-| 3 / joint4 | −102° 至 +102° | −100° 至 +100° | 反向 |
-| 4 / joint5 | −142° 至 +142° | −70° 至 +70° | 正向 |
-| 5 / joint6 | −120° 至 +120° | −120° 至 +120° | 反向 |
-
-依据：[Python 映射](../Python_SDK/piper_pipermate.py)和 [LeRobot 映射](../Lerobot/lerobot_teleoperator_pipermate/lerobot_teleoperator_pipermate/config_starai_pipermate.py)。各软件路径对手柄输入的换算不同，请参阅对应指南。未核对从臂前，不要将软件限位扩大至主臂机械行程。
-
 <a id="bill-of-materials"></a>
 
 ## 物料清单
 
-BOM 共 **21 项装机物料**。舵机置于首行；打印件使用零件标识，说明列保留原 BOM 标识。
+BOM 共 **21 项装机物料**，舵机置于首行。打印件的零件标识与 STEP 装配树中的名称一致，例如 `piper-mate-link 1`。
 
 3MF 打印文件将放在 [3mf/](3mf/)，目前待提供。本表不记录打印参数；层高、壁数和填充率应根据打印机与耗材选择。
 
@@ -72,17 +45,17 @@ BOM 共 **21 项装机物料**。舵机置于首行；打印件使用零件标�
 | 序号 | 零件名称 | 型号／规格／零件标识 | 图片 | 说明 | 数量 |
 | :---: | --- | --- | :---: | --- | :---: |
 | 1 | UART 总线舵机 | RP6-U15H-M | <a href="images/rp6-u15h-m.png"><img src="images/rp6-u15h-m.png" alt="RP6-U15H-M" width="90"></a> | 空心杯电机；12-bit 绝对值编码器；六个手臂关节＋手柄输入；J1-ID0–J7-ID6 | 7 |
-| 2 | 基座 | piper-mate-base | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID0` | 1 |
-| 3 | 连杆 1 | piper-mate-link1 | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID1` | 1 |
-| 4 | 连杆 2 | piper-mate-link2 | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID2` | 1 |
-| 5 | 连杆 3 | piper-mate-link3 | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID3` | 1 |
-| 6 | 连杆 4 | piper-mate-link4 | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID4` | 1 |
-| 7 | 连杆 5 | piper-mate-link5 | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID5` | 1 |
-| 8 | 手柄 | piper-mate-handle | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-0` | 1 |
-| 9 | 右指环 | piper-mate-finger-ring-right | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-1` | 1 |
-| 10 | 左指环 | piper-mate-finger-ring-left | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件；BOM 标识 `Piper mate_ID6-2` | 1 |
-| 11 | 转接板盖板 | piper-mate-uc01-front-case | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 转接板盖板" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板盖板 | 1 |
-| 12 | 转接板底座 | piper-mate-uc01-mount | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 转接板底座" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板底座 | 1 |
+| 2 | 基座 | `piper-mate-base` | <a href="images/base.png"><img src="images/base.png" alt="base" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 3 | 连杆 1 | `piper-mate-link 1` | <a href="images/link1.png"><img src="images/link1.png" alt="link1" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 4 | 连杆 2 | `piper-mate-link 2` | <a href="images/link2.png"><img src="images/link2.png" alt="link2" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 5 | 连杆 3 | `piper-mate-link 3` | <a href="images/link3.png"><img src="images/link3.png" alt="link3" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 6 | 连杆 4 | `piper-mate-link 4` | <a href="images/link4.png"><img src="images/link4.png" alt="link4" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 7 | 连杆 5 | `piper-mate-link 5` | <a href="images/link5.png"><img src="images/link5.png" alt="link5" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 8 | 手柄 | `piper-mate-handle` | <a href="images/trigger.png"><img src="images/trigger.png" alt="handle" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 9 | 右指环 | `piper-mate-finger-ring-right` | <a href="images/finger-ring-1.png"><img src="images/finger-ring-1.png" alt="right finger ring" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 10 | 左指环 | `piper-mate-finger-ring-left` | <a href="images/finger-ring-2.png"><img src="images/finger-ring-2.png" alt="left finger ring" width="90"></a> | 米白色 PLA 打印件 | 1 |
+| 11 | 转接板盖板 | `piper-mate-uc01-front-case` | <a href="images/uc01-front-case.png"><img src="images/uc01-front-case.png" alt="UC-01 转接板盖板" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板盖板 | 1 |
+| 12 | 转接板底座 | `piper-mate-uc01-mount` | <a href="images/uc01-mount.png"><img src="images/uc01-mount.png" alt="UC-01 转接板底座" width="90"></a> | 米白色 PLA 打印件；UC-01 转接板底座 | 1 |
 | 13 | 舵机连接线 | A2007H03 × 2<br>100 mm | <a href="images/cables/a2007h03-servo-cable-100mm.png"><img src="images/cables/a2007h03-servo-cable-100mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 4 |
 | 14 | 舵机连接线 | A2007H03 × 2<br>140 mm | <a href="images/cables/a2007h03-servo-cable-140mm.png"><img src="images/cables/a2007h03-servo-cable-140mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 1 |
 | 15 | 舵机连接线 | A2007H03 × 2<br>250 mm | <a href="images/cables/a2007h03-servo-cable-250mm.png"><img src="images/cables/a2007h03-servo-cable-250mm.png" alt="舵机连接线——AI 生成示意图" width="90"></a> | 两端接头方向相反 | 1 |
