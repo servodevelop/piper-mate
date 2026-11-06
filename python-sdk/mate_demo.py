@@ -2,19 +2,40 @@ import argparse
 import serial
 import fashionstar_uart_sdk as uservo
 
+
+import time
+import math
+
+
 # ==================== 参数配置 ====================
 
 PORT = "/dev/ttyUSB0"
 BAUDRATE = 1000000       # 你的 PiPER Mate 原程序使用 1000000
 
-#6个关节+夹抓
+#6个关节+夹爪
 SERVO_ID = [0,1,2,3,4,5,6]             # 0~5 六个关节，6 为夹爪
-
 
 TARGET_ANGLE = 30.0      # 目标角度（度）
 VELOCITY = 30.0          # 运动速度（度/秒）
 POWER = 500              # 功率参数（mW）
 DAMPING_POWER=1000
+
+#关节限制
+# 临时角度限制：来自实测观测范围
+# 注意：并非厂家认证的安全限位
+LIMIT_ANGLE = {
+    0: (-123.7, 120.0),
+    1: (0.9, 140),
+    2: (-115.0, 180),
+    3: (-90.4, 88.9),
+    4: (-84.5, 83.0),
+    5: (-115.2, 106.5),
+    6: (-1.0, 90.0),
+}
+MAX_CHANGE_DEG=100
+
+#默认目标角度
+TARGET_ANGLES=[0.0,30.0,-30.0,0.0,0.0,0.0,30.0]
 
 # =================== 命令行解析 ===================
 parser = argparse.ArgumentParser()
@@ -35,17 +56,19 @@ parser.add_argument(
     action="store_true",
     help="对全部7个舵机操作"
 )
-parser.add_argument(
-    "--angle",
-    type=float,
-    default=TARGET_ANGLE,
-    help="目标角度，默认30度"
-)
+
 parser.add_argument(
     "--velocity",
     type=float,
     default=VELOCITY,
     help="运动速度，默认30度/秒"
+)
+parser.add_argument(
+    "--angle",
+    type=float,
+    nargs="+",
+    default=None,
+    help="目标角度列表，按 --id 指定的顺序对应；不填则使用默认目标数组"
 )
 args = parser.parse_args()
 
@@ -105,34 +128,147 @@ try:
             angle = servo.query_servo_angle(i)
             print(f"舵机 {i}: {angle:.2f}°")
 
+
     # 3. 设置目标角度
     elif args.mode == "move":
 
-        # 先确认所有目标舵机都能通信
+        import math
+
+        # ==================== 1. 确定目标角度 ====================
+
+        if args.angle is None:
+            # 没有输入 --angle，使用预设目标角度
+            targets = {
+                i: TARGET_ANGLES[i]
+                for i in ids
+            }
+
+        else:
+            # 命令行输入角度数量必须和舵机数量一致
+            if len(args.angle) != len(ids):
+                parser.error(
+                    f"选择了 {len(ids)} 个舵机，"
+                    f"但输入了 {len(args.angle)} 个角度"
+                )
+
+            # 将每个 ID 和角度一一对应
+            targets = dict(zip(ids, args.angle))
+
+        # ==================== 2. 检查所有目标 ====================
+
         for i in ids:
+
+            # 检查通信
             if not servo.ping(i):
                 raise RuntimeError(f"舵机{i}无响应")
 
-        # 先检查所有目标，再下发指令
-        for i in ids:
+            # 读取当前位置和对应的目标角度
             current = servo.query_servo_angle(i)
+            target = targets[i]
 
-            if abs(args.angle - current) > 30:
+            # 检查当前角度
+            if current is None or not math.isfinite(current):
+                raise RuntimeError(f"舵机{i}当前角度读取异常")
+
+            # 检查目标角度
+            if not math.isfinite(target):
+                raise ValueError(f"舵机{i}目标角度无效")
+
+            # 检查关节角度限制
+            min_angle, max_angle = LIMIT_ANGLE[i]
+
+            if not min_angle <= target <= max_angle:
                 raise ValueError(
-                    f"舵机{i}当前{current:.2f}°, "
-                    f"目标{args.angle:.2f}°, "
-                    "变化超过30度"
+                    f"舵机{i}目标角度{target:.2f}°超出限制"
+                    f"[{min_angle}, {max_angle}]"
                 )
-        # 逐个发送位置命令
+
+            # 检查单次角度变化
+            delta = abs(target - current)
+
+            if delta > MAX_CHANGE_DEG:
+                raise ValueError(
+                    f"舵机{i}当前{current:.2f}°，"
+                    f"目标{target:.2f}°，"
+                    f"变化{delta:.2f}°超过"
+                    f"{MAX_CHANGE_DEG}°"
+                )
+
+            print(
+                f"舵机{i}: "
+                f"当前={current:.2f}°，"
+                f"目标={target:.2f}°"
+            )
+
+        
+        # ==================== 3. 发送运动指令 ====================
+
         for i in ids:
             servo.set_servo_angle(
                 i,
-                angle=args.angle,
+                angle=targets[i],
                 velocity=args.velocity
             )
-            print(f"舵机{i}目标角度: {args.angle}°")
+            print(f"舵机{i}发送目标: {targets[i]:.2f}°")
 
-        servo.wait(timeout=5000)
+        # ==================== 4. 等待并检查反馈 ====================
+
+        TIMEOUT = 12.0       # 最长等待12秒
+        TOLERANCE = 2.0      # 允许角度误差2度
+        CHECK_INTERVAL = 0.2 # 每0.2秒查询一次
+
+        start_time = time.monotonic()
+        reached = {i: False for i in ids}
+
+        while time.monotonic() - start_time < TIMEOUT:
+
+            all_reached = True
+
+            for i in ids:
+                try:
+                    actual = servo.query_servo_angle(i)
+
+                    if actual is None or not math.isfinite(actual):
+                        raise RuntimeError("无效角度反馈")
+
+                except Exception as e:
+                    print(f"舵机{i}读取失败: {e}")
+                    all_reached = False
+                    reached[i] = False
+                    continue
+
+                target = targets[i]
+                error = abs(target - actual)
+
+                reached[i] = error <= TOLERANCE
+
+                if not reached[i]:
+                    all_reached = False
+
+                print(
+                    f"ID={i} "
+                    f"目标={target:.1f}° "
+                    f"实际={actual:.1f}° "
+                    f"误差={error:.1f}°"
+                )
+
+            print("-----------------------")
+
+            if all_reached:
+                print("所有舵机达到角度容差范围")
+                break
+
+            time.sleep(CHECK_INTERVAL)
+
+        else:
+            print("等待超时，以下舵机尚未达到目标：")
+
+            for i in ids:
+                if not reached[i]:
+                    print(f"舵机{i}: 目标={targets[i]:.1f}°")
+
+
+
 
 
      # 4. 保持当前位置
@@ -189,18 +325,12 @@ try:
 
         for i in ids:
             print(f"\n===== 舵机{i} =====")
-            print("角度:",
-                  servo.query_servo_angle(i))
-            print("电压:",
-                  servo.query_voltage(i), "V")
-            print("电流:",
-                  servo.query_current(i), "A")
-            print("功率:",
-                  servo.query_power(i), "W")
-            print("温度ADC:",
-                  servo.query_temperature(i))
-            print("状态:",
-                  servo.query_status(i))
+            print("角度:",servo.query_servo_angle(i))
+            print("电压:",servo.query_voltage(i), "V")
+            print("电流:",servo.query_current(i), "A")
+            print("功率:",servo.query_power(i), "W")
+            print("温度ADC:",servo.query_temperature(i))
+            print("状态:",servo.query_status(i))
 
     # 9. 综合监控
     elif args.mode == "monitor":
